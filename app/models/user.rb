@@ -1,8 +1,6 @@
 class User < ApplicationRecord
   ROLES = %w[admin institution_owner secretary teacher student student_tutor].freeze
 
-  #after_initialize :set_default_role, :if => :new_record?
-
   validates :name, presence: true
   validates :email, uniqueness: true, email: true
 
@@ -15,7 +13,6 @@ class User < ApplicationRecord
       ((roles_mask.to_i || 0) & 2**ROLES.index(r)).zero?
     end
   end
-
 
   def set_default_role
     self.role ||= :user
