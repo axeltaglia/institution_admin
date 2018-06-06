@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180602223615) do
+ActiveRecord::Schema.define(version: 20180605150257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 20180602223615) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_institution_owners_on_user_id", using: :btree
+  end
+
+  create_table "institutions", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "institution_owner_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["institution_owner_id"], name: "index_institutions_on_institution_owner_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,4 +51,5 @@ ActiveRecord::Schema.define(version: 20180602223615) do
   end
 
   add_foreign_key "institution_owners", "users"
+  add_foreign_key "institutions", "institution_owners"
 end

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @institution.name %>
+</p>
+
+<p>
+  <strong>Institution owner:</strong>
+  <%= @institution.institution_owner %>
+</p>
+
+<%= link_to 'Edit', edit_admin_institution_path(@institution) %> |
+<%= link_to 'Back', admin_institutions_path %>

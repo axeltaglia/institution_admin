@@ -1,5 +1,5 @@
-module Institution
-    class DashboardController < Institution::BaseController
+module Owner
+    class DashboardController < Owner::BaseController
       respond_to :json, :html
   
       # GET /dashboard

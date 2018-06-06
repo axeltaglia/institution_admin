@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(user)
     return admin_users_path if user.is?(:admin)
-    return institution_root_path if user.is?(:institution_owner)
+    return owner_root_path if user.is?(:institution_owner)
   end
 
   def home
