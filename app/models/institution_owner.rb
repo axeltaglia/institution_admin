@@ -1,6 +1,6 @@
 class InstitutionOwner < ApplicationRecord
-  belongs_to :user, touch: true
-  delegate :email, to: :user
+  belongs_to :user, touch: true, autosave: true
+  delegate :email, :email=, :name, :name=, to: :user
   
   validates :user_id, presence: true, uniqueness: true
 end

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :owner do
     # institution_owner root
     root to: 'dashboard#index'
+    resources :students
   end
 
   namespace :admin do
