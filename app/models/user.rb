@@ -18,14 +18,13 @@ class User < ApplicationRecord
     end
   end
 
-  def set_default_role
-    self.role ||= :user
-  end
-
   def is?(role)
     roles.include?(role.to_s)
   end
-  
+
+  def admin!
+    self.roles = ['admin']
+  end  
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
