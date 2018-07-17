@@ -31,7 +31,6 @@ module Admin
       @user = User.new(user_params)
 
       if @user.save
-        UserMailer.with(user: @user).welcome_email.deliver_later
         add_roles_profiles(user_params[:roles])
         flash[:notice] = t('admin.users.create.success')
         respond_with :edit, :admin, @user
