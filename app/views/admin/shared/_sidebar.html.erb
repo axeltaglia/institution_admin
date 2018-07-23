@@ -24,9 +24,18 @@
 
     <ul class="sidebar-menu">
       <li class="header"><%= t('admin.sidebar.main_navigation') %></li>
+      
+      <% if current_user.is? :admin %>
       <li> <%= link_to '<i class="fa fa-dashboard"></i><span>Dashboard</span>'.html_safe, admin_root_path %> </li>
+      <% end %>
+
+      <% if current_user.is? :institution_owner %>
+      <li> <%= link_to '<i class="fa fa-dashboard"></i><span>Dashboard</span>'.html_safe, owner_root_path %> </li>
+      <% end %>
 
       <li class="header"><%= t('admin.sidebar.administration') %></li>
+
+      <% if current_user.is? :admin %>
       <li class="treeview">
         <a href="#">
           <i class="fa fa-users"></i>
@@ -40,6 +49,23 @@
           <li> <%= link_to '<i class="fa fa-circle-o"></i> Create User'.html_safe, new_admin_user_path %> </li>
         </ul>
       </li>
+      <% end %>
+
+      <% if current_user.is? :institution_owner %>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-users"></i>
+          <span>Users</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li> <%= link_to '<i class="fa fa-circle-o"></i> List Users'.html_safe, owner_students_path %> </li>
+          <li> <%= link_to '<i class="fa fa-circle-o"></i> Create User'.html_safe, new_owner_student_path %> </li>
+        </ul>
+      </li>
+      <% end %>
 
     </ul>
 

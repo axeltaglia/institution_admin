@@ -22,7 +22,7 @@ module Admin
 
     # GET /users/1/edit
     def edit
-      UserMailer.welcome_email.deliver_later
+      #UserMailer.welcome_email.deliver_later
       @url = admin_user_path(@user)
     end
 
