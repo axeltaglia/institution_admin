@@ -74,13 +74,17 @@ Rails.application.configure do
       :port                 => ENV["SMTP_PORT"],
       :user_name            => ENV["SMTP_USERNAME"],
       :password             => ENV["SMTP_PASSWORD"],
-      :enable_starttls_auto => true
+      :enable_starttls_auto => true,
+      :domain               => 'bebop.com.ar',
   }
 
   config.action_mailer.default_url_options = { :host => ENV.fetch("APP_HOST") }
-  config.action_mailer.delivery_method = :smtp
 
-
+ # config.action_mailer.default_url_options = { :host => ENV.fetch("APP_HOST") }
+  #config.action_mailer.delivery_method = :sendmail 
+  #config.action_mailer.perform_deliveries = true
+  #config.action_mailer.raise_delivery_errors = true
+  #config.action_mailer.default_options = {from: 'no-reply@bebop.com.ar'}
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
