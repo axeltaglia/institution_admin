@@ -76,7 +76,6 @@ module Admin
       end
 
       def add_roles_profiles(roles)
-        Rails.logger.debug "AXELDEBUG: #{roles}"
         roles.each do |role|
           @user.institution_owner = InstitutionOwner.find_or_create_by!(user_id: @user.id) if role == "institution_owner"
         end

@@ -3,16 +3,14 @@ Rails.application.routes.draw do
 
 
   namespace :owner do
-    # institution_owner root
     root to: 'dashboard#index'
     resources :students
   end
 
   namespace :admin do
+    root to: 'dashboard#index'
     resources :users
     resources :institutions
-    # Admin root
-    root to: 'base#index'
   end
 
   # Back admin routes end
@@ -23,6 +21,8 @@ Rails.application.routes.draw do
 
 
   # Application root
-  root to: 'application#home'
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
   # Front routes end
 end

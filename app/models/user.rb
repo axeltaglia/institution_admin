@@ -24,7 +24,15 @@ class User < ApplicationRecord
 
   def admin!
     self.roles = ['admin']
-  end  
+  end
+
+  def institution_owner!
+    self.roles = [:institution_owner]
+  end
+
+  def student!
+    self.roles = [:student]
+  end
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

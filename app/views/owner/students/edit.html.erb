@@ -1,6 +1,22 @@
-<h1>Editing Student</h1>
+<%= form_for @student, url: @url, role: :form, html: { multipart: true } do |f| %>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
 
-<%= render 'form', student: @student, url: @url %>
+        <div class="box-header">
+          <h3 class="box-title">Edit Student</h3>
+        </div>
 
-<%= link_to 'Show', owner_student_path(@student) %> |
-<%= link_to 'Back', owner_students_path %>
+        <div class="box-body">
+          <%= render partial: 'owner/students/form', locals: { f: f } %>
+        </div>
+
+        <div class="box-footer">
+          <%= link_to 'Cancel', owner_students_path, class: 'btn btn-danger' %>
+          <%= f.submit 'Submit', class: "btn btn-success" %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>

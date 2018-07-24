@@ -1,29 +1,66 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-xs-12">
+      <div class="box">
 
-<h1>Students</h1>
+        <div class="box-header">
+          <h3 class="box-title">List of Students</h3>
+        </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Student owner</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        <div class="box-body">
+          <div id="user_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
 
-  <tbody>
-    <% @students.each do |student| %>
-      <tr>
-        <td><%= student.name %></td>
-        <td><%= student.student_owner %></td>
-        <td><%= link_to 'Show', owner_student_path(student) %></td>
-        <td><%= link_to 'Edit', edit_owner_student_path(student) %></td>
-        <td><%= link_to 'Destroy', owner_student_path(student), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            <div class="row">
+              <div class="col-sm-12">
+                <table id="user_index" class="table table-bordered table-striped dataTable" role="grid">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th class="col-xs-1">Actions</th>
+                    </tr>
+                  </thead>
 
-<br>
+                  <tbody>
+                    <% @students.each do |student| %>
+                      <tr>
+                        <td> 
+                        <%= link_to edit_owner_student_path(student) do %> 
+                            <%= "#{student.name} #{student.last_name}" %> 
+                        <% end %>
+                        </td>
+                        <td> <%= student.email %> </td>
+                        <td>
+                          <div class="btn-row">
+                            <%= link_to raw('<i class="fa fa-cogs"></i>'), edit_owner_student_path(student), class: 'btn btn-sm btn-warning' %>
+                            <%= link_to raw('<i class="fa fa-trash"></i>'), owner_student_path(student), class: 'btn btn-sm btn-danger', method: :delete,
+                                            data: { confirm: 'Are you sure you want to delete this student?' } %>
+                          </div>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
 
-<%= link_to 'New Student', new_owner_student_path %>
+                  <tfoot>
+                    <tr role="row">
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th class="col-xs-1">Actions</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2 col-md-offset-10">
+    <%= link_to 'New Student', new_owner_student_path, class: 'btn btn-success pull-right' %>
+  </div>
+</div>

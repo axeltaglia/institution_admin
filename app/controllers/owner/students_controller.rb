@@ -16,7 +16,6 @@ module Owner
     # GET /students/new
     def new
       @student = Student.new
-      @student.user = User.new
       @url = owner_students_path
     end
 
@@ -28,14 +27,18 @@ module Owner
     # POST /students
     # POST /students.json
     def create
-      user = User.create!(name: "xxxx", email: "xxxx@xxxx.com", password: "123456")
       @student = Student.new
-      @student.user = user
-
       @student = Student.new(student_params)
+      
       respond_to do |format|
         if @student.save
-          format.html { redirect_to owner_student_path(@student), notice: 'Student was successfully created.' }
+          user = User.create!(name: student_params[:name], email: student_params[:email], password: "123456")
+          user.student!
+          user.save
+          @student.user = user
+          @student.save
+
+          format.html { redirect_to owner_students_path, notice: 'Student was successfully created.' }
           format.json { render :show, status: :created, location: owner_student_path(@student) }
         else
           format.html { render :new }
@@ -49,7 +52,7 @@ module Owner
     def update
       respond_to do |format|
         if @student.update(student_params)
-          format.html { redirect_to owner_student_path(@student), notice: 'Student was successfully updated.' }
+          format.html { redirect_to owner_students_path, notice: 'Student was successfully updated.' }
           format.json { render :show, status: :ok, location: owner_student_path(@student) }
         else
           format.html { render :edit }
@@ -61,7 +64,10 @@ module Owner
     # DELETE /students/1
     # DELETE /students/1.json
     def destroy
+      user = @student.user
       @student.destroy
+      user.destroy
+      
       respond_to do |format|
         format.html { redirect_to owner_students_url, notice: 'Student was successfully destroyed.' }
         format.json { head :no_content }
@@ -76,7 +82,7 @@ module Owner
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def student_params
-        params.require(:student).permit(:name, :student_owner_id)
+        params.require(:student).permit(:name, :last_name, :email, :phone, :description)
       end
   end
 end

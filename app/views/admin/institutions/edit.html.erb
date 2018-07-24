@@ -1,6 +1,22 @@
-<h1>Editing Institution</h1>
+<%= form_for @institution, url: @url, role: :form, html: { multipart: true } do |f| %>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
 
-<%= render 'form', institution: @institution, url: @url %>
+        <div class="box-header">
+          <h3 class="box-title">Edit Institution</h3>
+        </div>
 
-<%= link_to 'Show', admin_institution_path(@institution) %> |
-<%= link_to 'Back', admin_institutions_path %>
+        <div class="box-body">
+          <%= render partial: 'admin/institutions/form', locals: { f: f } %>
+        </div>
+
+        <div class="box-footer">
+          <%= link_to 'Cancel', admin_institutions_path, class: 'btn btn-danger' %>
+          <%= f.submit 'Submit', class: "btn btn-success" %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>
