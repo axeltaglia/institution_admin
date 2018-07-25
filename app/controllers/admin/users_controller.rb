@@ -4,13 +4,11 @@ module Admin
     before_action :set_user, only: [:show, :edit, :edit_password, :update, :destroy]
 
     # GET /users
-    # GET /users.json
     def index
       @users = User.all
     end
 
     # GET /users/1
-    # GET /users/1.json
     def show
     end
 
@@ -22,25 +20,22 @@ module Admin
 
     # GET /users/1/edit
     def edit
-      #UserMailer.welcome_email.deliver_later
       @url = admin_user_path(@user)
     end
 
     # GET /edit_password/:id
     def edit_password
-      #UserMailer.welcome_email.deliver_later
       @url = admin_user_path(@user)
     end
 
     # POST /users
-    # POST /users.json
     def create
       @user = User.new(user_params)
 
       if @user.save
         add_roles_profiles(user_params[:roles])
         flash[:notice] = t('admin.users.create.success')
-        respond_with :edit, :admin, @user
+        redirect_to admin_users_path
       else
         flash[:warning] = @user.errors.full_messages.uniq.join(', ')
         respond_with :new, :admin, :user
@@ -48,11 +43,11 @@ module Admin
     end
 
     # PATCH/PUT /users/1
-    # PATCH/PUT /users/1.json
     def update
       if @user.update(user_params)
+        add_roles_profiles(user_params[:roles])
         flash[:notice] = t('admin.users.update.success')
-        respond_with :edit, :admin, @user
+        redirect_to admin_users_path
       else
         flash[:warning] = @user.errors.full_messages.uniq.join(', ')
         respond_with :edit, :admin, :user
@@ -60,12 +55,10 @@ module Admin
     end
 
     # DELETE /users/1
-    # DELETE /users/1.json
     def destroy
       @user.destroy
       respond_to do |format|
         format.html { redirect_to admin_users_path, notice: t('admin.users.destroy.success') }
-        format.json { head :no_content }
       end
     end
 

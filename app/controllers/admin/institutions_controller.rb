@@ -30,6 +30,8 @@ module Admin
         if @institution.save
           format.html { redirect_to admin_institutions_path, notice: 'Institution was successfully created.' }
         else
+          @url = admin_institutions_path
+          flash[:warning] = @institution.errors.full_messages.uniq.join(', ')
           format.html { render :new }
         end
       end
@@ -41,6 +43,8 @@ module Admin
         if @institution.update(institution_params)
           format.html { redirect_to admin_institutions_path, notice: 'Institution was successfully updated.' }
         else
+          @url = admin_institution_path(@institution)
+          flash[:warning] = @institution.errors.full_messages.uniq.join(', ')
           format.html { render :edit }
         end
       end
