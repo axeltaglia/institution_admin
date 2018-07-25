@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
     resources :users
     resources :institutions
+    get '/edit_password/:id', to: 'users#edit_password', as: 'user_edit_password'
   end
 
   # Back admin routes end

@@ -8,7 +8,26 @@
         </div>
 
         <div class="box-body">
-          <%= render partial: 'admin/users/form', locals: { f: f } %>
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, class: "form-control", placeholder: "Enter email", required: true %>
+            <span class="help-block"><i>* This field is required</i><span>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control", placeholder: "Enter name", required: true %>
+            <span class="help-block"><i>* This field is required</i><span>
+          </div>
+
+          <% for role in User::ROLES %>
+            <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"}%>
+            <%= label_tag "user_roles_#{role}", role.humanize %><br />
+          <% end %>
+          <%= hidden_field_tag "user[roles][]", "" %>
+
+          <%= link_to 'Edit Password', admin_user_edit_password_path, class: 'btn btn-warning' %>
+
         </div>
 
         <div class="box-footer">
