@@ -7,51 +7,45 @@
       </div>
 
       <div class="panel-body">
-        <div id="user_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th><%= t('activerecord.attributes.institutions.name') %></th>
+                <th><%= t('activerecord.attributes.institutions.institution_owner') %></th>
+                <th class="col-xs-1"><%= t('table.column.actions') %></th></th>
+              </tr>
+            </thead>
 
-          <div class="row">
-            <div class="col-sm-12 table-responsive">
-              <table id="user_index" class="table table-bordered table-striped" role="grid">
-                <thead>
-                  <tr>
-                    <th><%= t('activerecord.attributes.institutions.name') %></th>
-                    <th><%= t('activerecord.attributes.institutions.institution_owner') %></th>
-                    <th class="col-xs-1"><%= t('table.column.actions') %></th></th>
-                  </tr>
-                </thead>
+            <tbody>
+              <% @institutions.each do |institution| %>
+              <tr>
+                <td> 
+                  <%= link_to edit_admin_institution_url(institution) do %> 
+                  <%= institution.name %>
+                  <% end %>  
+                </td>
+                <td> <%= institution.institution_owner.name %> </td>
+                <td>
+                  <div class="btn-row">
+                    <%= link_to raw('<i class="fa fa-eye"></i>'), admin_institution_url(institution), class: 'btn btn-sm btn-success' %>
+                    <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_admin_institution_url(institution), class: 'btn btn-sm btn-warning' %>
+                    <%= link_to raw('<i class="fa fa-trash"></i>'), admin_institution_url(institution), class: 'btn btn-sm btn-danger', method: :delete,
+                    data: { confirm: 'Are you sure you want to delete this element?' } %>
+                  </div>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
 
-                <tbody>
-                  <% @institutions.each do |institution| %>
-                  <tr>
-                    <td> 
-                      <%= link_to edit_admin_institution_url(institution) do %> 
-                      <%= institution.name %>
-                      <% end %>  
-                    </td>
-                    <td> <%= institution.institution_owner.name %> </td>
-                    <td>
-                      <div class="btn-row">
-                        <%= link_to raw('<i class="fa fa-eye"></i>'), admin_institution_url(institution), class: 'btn btn-sm btn-success' %>
-                        <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_admin_institution_url(institution), class: 'btn btn-sm btn-warning' %>
-                        <%= link_to raw('<i class="fa fa-trash"></i>'), admin_institution_url(institution), class: 'btn btn-sm btn-danger', method: :delete,
-                        data: { confirm: 'Are you sure you want to delete this element?' } %>
-                      </div>
-                    </td>
-                  </tr>
-                  <% end %>
-                </tbody>
-
-                <tfoot>
-                  <tr role="row">
-                    <th><%= t('activerecord.attributes.institutions.name') %></th>
-                    <th><%= t('activerecord.attributes.institutions.institution_owner') %></th>
-                    <th class="col-xs-1"><%= t('form.column.actions') %></th>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-
+            <tfoot>
+              <tr role="row">
+                <th><%= t('activerecord.attributes.institutions.name') %></th>
+                <th><%= t('activerecord.attributes.institutions.institution_owner') %></th>
+                <th class="col-xs-1"><%= t('form.column.actions') %></th>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
 
