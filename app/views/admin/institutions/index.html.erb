@@ -31,7 +31,7 @@
                     <%= link_to raw('<i class="fa fa-eye"></i>'), admin_institution_url(institution), class: 'btn btn-sm btn-success' %>
                     <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_admin_institution_url(institution), class: 'btn btn-sm btn-warning' %>
                     <%= link_to raw('<i class="fa fa-trash"></i>'), admin_institution_url(institution), class: 'btn btn-sm btn-danger', method: :delete,
-                    data: { confirm: 'Are you sure you want to delete this element?' } %>
+                    data: { confirm: t('admin.institutions.destroy.warning') } %>
                   </div>
                 </td>
               </tr>
