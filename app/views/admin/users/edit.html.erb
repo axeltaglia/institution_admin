@@ -11,13 +11,13 @@
           <div class="form-group">
             <%= f.label :email %>
             <%= f.email_field :email, class: "form-control", placeholder: "Enter email", required: true %>
-            <span class="help-block"><i>* This field is required</i><span>
+            <span class="help-block"><i>* <%= t('validation.required_field')%></i><span>
           </div>
 
           <div class="form-group">
             <%= f.label :name %>
             <%= f.text_field :name, class: "form-control", placeholder: "Enter name", required: true %>
-            <span class="help-block"><i>* This field is required</i><span>
+            <span class="help-block"><i>* <%= t('validation.required_field')%></i><span>
           </div>
 
           <% for role in User::ROLES %>
@@ -31,8 +31,8 @@
         </div>
 
         <div class="box-footer">
-          <%= link_to 'Cancel', admin_users_path, class: 'btn btn-danger' %>
-          <%= f.submit 'Submit', class: "btn btn-success" %>
+          <%= link_to t('button.cancel'), admin_users_path, class: 'btn btn-danger' %>
+          <%= f.submit t('button.submit'), class: "btn btn-success" %>
         </div>
 
       </div>

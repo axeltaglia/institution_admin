@@ -28,7 +28,7 @@ module Admin
 
       respond_to do |format|
         if @institution.save
-          format.html { redirect_to admin_institutions_path, notice: 'Institution was successfully created.' }
+          format.html { redirect_to admin_institutions_path, notice: t('admin.institutions.create.success') }
         else
           @url = admin_institutions_path
           flash[:warning] = @institution.errors.full_messages.uniq.join(', ')
@@ -41,7 +41,7 @@ module Admin
     def update
       respond_to do |format|
         if @institution.update(institution_params)
-          format.html { redirect_to admin_institutions_path, notice: 'Institution was successfully updated.' }
+          format.html { redirect_to admin_institutions_path, notice: t('admin.institutions.update.success') }
         else
           @url = admin_institution_path(@institution)
           flash[:warning] = @institution.errors.full_messages.uniq.join(', ')
@@ -52,9 +52,9 @@ module Admin
 
     # DELETE /institutions/1
     def destroy
-      @institution.destroy
+    InstitutionsService.new.destroy_institution(@institution)
       respond_to do |format|
-        format.html { redirect_to admin_institutions_url, notice: 'Institution was successfully destroyed.' }
+        format.html { redirect_to admin_institutions_url, notice: t('admin.institutions.destroy.success') }
       end
     end
 

@@ -273,7 +273,7 @@
 			case 'file':
 			case 'image':
 			case 'radio':
-			case 'submit':
+			case t('button.submit'):
 				return false;
 			}
 
@@ -688,7 +688,7 @@
 		}
 
 		// Very odd behaviour on iOS (issue #18): if a submit element is present inside a form and the user hits enter in the iOS simulator or clicks the Go button on the pop-up OS keyboard the a kind of 'fake' click event will be triggered with the submit-type input element as the target.
-		if (event.target.type === 'submit' && event.detail === 0) {
+		if (event.target.type === t('button.submit') && event.detail === 0) {
 			return true;
 		}
 

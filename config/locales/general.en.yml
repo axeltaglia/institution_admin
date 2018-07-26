@@ -19,11 +19,28 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+en:  
+  validation:
+    success: "Success!"
+    warning: "Warning!"
+    required_field: This field is required
+  
+  table:
+    column:
+      actions: "Actions"
+
+  
+  button:
+    new: "New"
+    back: "Back"
+    edit: "Edit"
+    cancel: "Cancel"
+    submit: "Submit"
+
   navigation:
-    main_title: AdminLTE Template
+    main_title: Institution Administrator
     root: Home
     admin: Admin
   home:
-    title: AdminLTE Rails Template.
-    subtitle: This is just a simple Rails template application of an admin panel with the <a href="https://almsaeedstudio.com/">AdminLTE</a> theme integrated to use as a starting point for your application
+    title: Institution Administrator
+    subtitle: Administrator system for education institutions.

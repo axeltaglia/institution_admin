@@ -31,7 +31,6 @@ module Admin
     # POST /users
     def create
       @user = User.new(user_params)
-
       if @user.save
         add_roles_profiles(user_params[:roles])
         flash[:notice] = t('admin.users.create.success')
@@ -62,24 +61,19 @@ module Admin
       end
     end
 
-    # Use callbacks to share common setup or constraints between actions.
-    private def set_user
-    @user = User.find(params[:id])
-  end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
     private 
-    
-    def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :name, roles: [])
-    end
-
-    def add_roles_profiles(roles)
-      roles.each do |role|
-        @user.institution_owner = InstitutionOwner.find_or_create_by!(user_id: @user.id) if role == "institution_owner"
+      def set_user
+        @user = User.find(params[:id])
       end
-    end
 
+      def user_params
+        params.require(:user).permit(:email, :password, :password_confirmation, :name, roles: [])
+      end
 
+      def add_roles_profiles(roles)
+        roles.each do |role|
+          @user.institution_owner = InstitutionOwner.find_or_create_by!(user_id: @user.id) if role == "institution_owner"
+        end
+      end
   end
 end

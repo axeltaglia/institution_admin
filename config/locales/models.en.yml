@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    attributes:
+
+      ##############################################
+      #USER 
+      ##############################################
+      user:
+        username: username
+
+      ##############################################
+      #INSTITUTION 
+      ##############################################
+      institution:
+        name: Name
+        institution_owner: Institution Owner

@@ -14948,12 +14948,12 @@ function program17(depth0,data) {
     },
     link: {
       insert: 'Insert link',
-      cancel: 'Cancel',
+      cancel: t('button.cancel'),
       target: 'Open link in new window'
     },
     image: {
       insert: 'Insert image',
-      cancel: 'Cancel'
+      cancel: t('button.cancel')
     },
     html: {
       edit: 'Edit HTML'

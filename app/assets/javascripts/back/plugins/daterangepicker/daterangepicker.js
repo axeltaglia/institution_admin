@@ -74,7 +74,7 @@
             format: 'MM/DD/YYYY',
             separator: ' - ',
             applyLabel: 'Apply',
-            cancelLabel: 'Cancel',
+            cancelLabel: t('button.cancel'),
             weekLabel: 'W',
             customRangeLabel: 'Custom Range',
             daysOfWeek: moment.weekdaysMin(),

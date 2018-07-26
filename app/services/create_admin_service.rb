@@ -1,4 +1,5 @@
 class CreateAdminService
+  
   def call
     User.find_or_create_by!(email: Rails.application.secrets.admin_email,
                             name: Rails.application.secrets.admin_name) do |user|
@@ -7,4 +8,7 @@ class CreateAdminService
       user.admin!
     end
   end
+  
 end
+
+
