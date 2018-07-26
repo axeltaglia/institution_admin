@@ -130,7 +130,7 @@ body {
 /*
  * Affix and center
  */
-@media (min-width: 768px) {
+@media (min-width: 767px) {
   /* Pull out the header and footer */
   .masthead {
     position: fixed;
@@ -151,6 +151,11 @@ body {
   .masthead {
     width: 100%;
     /* Must be percentage or pixels for horizontal alignment */
+  }
+
+  
+  .table-responsive {
+    border: none !important;
   }
 }
 @media (min-width: 992px) {
