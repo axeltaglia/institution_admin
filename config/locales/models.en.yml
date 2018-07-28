@@ -9,7 +9,7 @@ en:
         name: Name
         email: Email
         password: Password
-        repeat_password: Repeat Password
+        repeat_password: Password Confirmation
         username: Username
         reset_password_sent_at: Reset Password Sent At
         remember_created_at: Remember Created At
@@ -42,3 +42,4 @@ en:
         description: Description
         created_at: Created At
         updated_at: Updated At
+

@@ -3,28 +3,28 @@
 		<div class="panel panel-default">
 
 			<div class="panel-heading">
-				<h3 class="box-title">Institution</h3>
+				<h3 class="box-title"><%= t('admin.institutions.index.title') %></h3>
 			</div>
 
 			<div class="panel-body">
 				<p>
-					<strong>Name:</strong>
+					<strong><%= t('activerecord.attributes.institutions.name') %>:</strong>
 					<%= @institution.name %>
 				</p>
 
 				<p>
-					<strong>Institution owner:</strong>
+					<strong><%= t('activerecord.attributes.institutions.institution_owner') %>:</strong>
 					<%= @institution.institution_owner.email %>
 				</p>
 
-				<%= link_to raw('<i class="fa fa-pencil"></i>'), edit_admin_institution_url(@institution), class: 'btn btn-sm btn-warning' %>
+				<%= link_to raw('<i class="fa fa-pencil"></i>'), edit_owner_student_path(@institution), class: 'btn btn-sm btn-warning' %>
 
-				<%= link_to raw('<i class="fa fa-trash"></i>'), admin_institution_url(@institution), class: 'btn btn-sm btn-danger', method: :delete,
-                                            data: { confirm: 'Are you sure you want to delete this Institution?' } %>
+				<%= link_to raw('<i class="fa fa-trash"></i>'), owner_student_path(@institution), class: 'btn btn-sm btn-danger', method: :delete,
+                                            data: { confirm: t('admin.institutions.destroy.warning') } %>
 			</div>
 
 			<div class="box-footer">
-				<%= link_to t('button.back'), admin_institutions_path, class: 'btn btn-success' %>
+				<%= link_to t('button.back'), owner_students_path, class: 'btn btn-success' %>
 			</div>
 
 		</div>

@@ -4,11 +4,11 @@
       <div class="panel panel-default">
 
         <div class="panel-heading">
-          <h3 class="box-title">New User</h3>
+          <h3 class="box-title"><%= t('admin.users.new.title') %></h3>
         </div>
 
         <div class="panel-body">
-          <%= render partial: 'admin/users/form', locals: { f: f } %>
+          <%= render partial: 'admin/users/new_form', locals: { f: f } %>
         </div>
 
         <div class="box-footer">

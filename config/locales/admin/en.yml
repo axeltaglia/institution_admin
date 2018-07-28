@@ -34,6 +34,8 @@ en:
       title: Institutions
       index:
         title: List of Institutions
+      show:
+        title: Institution
       new:
         title: New Institution
       edit:
