@@ -1,5 +1,7 @@
 class StudentsService
   def destroy_user(student)
-  	  student.destroy
+  	  user = student.user
+      student.destroy
+      user.destroy
   end
 end

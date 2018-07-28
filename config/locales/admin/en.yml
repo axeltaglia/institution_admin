@@ -1,4 +1,13 @@
 en:
+  application:
+    title: App
+    name: App
+  header:
+    toogle_navigation: Toogle Navigation
+    member_since: Member since
+    sign_out: Sing Out
+    profile: Profile
+
   admin:
     sidebar:
       main_navigation: MAIN NAVIGATION
