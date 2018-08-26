@@ -9,7 +9,7 @@
 			<div class="panel-body">
 				<p>
 					<strong><%= t('activerecord.attributes.students.name') %>:</strong>
-					<%= @student.name %>
+					<%= @student.full_name %>
 				</p>
 
 				<%= link_to raw('<i class="fa fa-pencil"></i>'), edit_owner_student_url(@student), class: 'btn btn-sm btn-warning' %>

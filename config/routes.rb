@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 
   namespace :owner do
-    root to: 'dashboard#index'
+    root to: 'students#index'
     resources :students
   end
 

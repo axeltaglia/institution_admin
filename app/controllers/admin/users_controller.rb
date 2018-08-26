@@ -73,7 +73,7 @@ module Admin
       def add_roles_profiles(roles)
         roles.each do |role|
           @user.institution_owner = InstitutionOwner.find_or_create_by!(user_id: @user.id) if role == "institution_owner"
-        end
+        end if roles
       end
   end
 end

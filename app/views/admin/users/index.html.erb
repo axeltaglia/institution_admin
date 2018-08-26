@@ -12,7 +12,7 @@
             <thead>
               <tr>
                 <th><%= t('activerecord.attributes.users.name') %></th>
-                <th><%= t('activerecord.attributes.users.email') %></th>
+                <th class="hidden-xs"><%= t('activerecord.attributes.users.email') %></th>
                 <th class="col-xs-1"><%= t('form.column.actions') %></th>
               </tr>
             </thead>
@@ -21,7 +21,7 @@
               <% @users.each do |user| %>
               <tr>
                 <td> <%= user.name %> </td>
-                <td> <%= user.email %> </td>
+                <td class="hidden-xs"> <%= user.email %> </td>
                 <td>
                   <div class="btn-row">
                   <%= link_to raw('<i class="fa fa-eye"></i>'), admin_user_url(user), class: 'btn btn-sm btn-success' %>
@@ -37,7 +37,7 @@
             <tfoot>
               <tr role="row">
                 <th><%= t('activerecord.attributes.users.name') %></th>
-                <th><%= t('activerecord.attributes.users.email') %></th>
+                <th class="hidden-xs"><%= t('activerecord.attributes.users.email') %></th>
                 <th class="col-xs-1"><%= t('form.column.actions') %></th>
               </tr>
             </tfoot>
