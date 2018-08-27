@@ -31,7 +31,7 @@
       <li class="treeview">
         <a href="#">
           <i class="fa fa-users"></i>
-          <span>Users</span>
+          <span><%= t('admin.users.title') %></span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -46,7 +46,7 @@
       <li class="treeview">
         <a href="#">
           <i class="fa fa-home"></i>
-          <span>Institutions</span>
+          <span><%= t('admin.institutions.title') %></span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -61,7 +61,7 @@
       <li class="treeview">
         <a href="#">
           <i class="fa fa-users"></i>
-          <span>Students</span>
+          <span><%= t('owner.students.title') %></span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -69,6 +69,34 @@
         <ul class="treeview-menu">
           <li> <%= link_to '<i class="fa fa-circle-o"></i> List Students'.html_safe, owner_students_path %> </li>
           <li> <%= link_to '<i class="fa fa-circle-o"></i> Create Student'.html_safe, new_owner_student_path %> </li>
+        </ul>
+      </li>
+
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-users"></i>
+          <span><%= t('owner.asignatures.title') %></span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li> <%= link_to '<i class="fa fa-circle-o"></i> List Asignatures'.html_safe, owner_asignatures_path %> </li>
+          <li> <%= link_to '<i class="fa fa-circle-o"></i> Create Asignature'.html_safe, new_owner_asignature_path %> </li>
+        </ul>
+      </li>
+
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-users"></i>
+          <span><%= t('owner.courses.title') %></span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li> <%= link_to '<i class="fa fa-circle-o"></i> List Courses'.html_safe, owner_courses_path %> </li>
+          <li> <%= link_to '<i class="fa fa-circle-o"></i> Create Course'.html_safe, new_owner_course_path %> </li>
         </ul>
       </li>
       <% end %>

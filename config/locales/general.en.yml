@@ -41,6 +41,9 @@ en:
     main_title: Institution Administrator
     root: Home
     admin: Admin
+    admin_dashboard_title: Administrator Dashboard
+    owner_dashboard_title: Administrator Institution Dashboard
+    teacher_dashboard_title: Teacher Dashboard
   home:
     title: Institution Administrator
     subtitle: Administrator system for education institutions.

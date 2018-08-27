@@ -75,3 +75,41 @@ en:
       destroy:
         warning: Are you sure you want to delete this student?
         success: Student was successfully destroyed.
+
+    ##############################################
+    #ASIGNATURES
+    ##############################################
+    asignatures:
+      title: Asignatures
+      index:
+        title: List of Asignatures
+      new:
+        title: New Asignature
+      edit:
+        title: Edit Asignature
+      create:
+        success: Asignature was successfully created.
+      update:
+        success: Asignature was successfully updated.
+      destroy:
+        warning: Are you sure you want to delete this asignature?
+        success: Asignature was successfully destroyed.
+
+    ##############################################
+    #COURSES
+    ##############################################
+    courses:
+      title: Courses
+      index:
+        title: List of Courses
+      new:
+        title: New Course
+      edit:
+        title: Edit Course
+      create:
+        success: Course was successfully created.
+      update:
+        success: Course was successfully updated.
+      destroy:
+        warning: Are you sure you want to delete this course?
+        success: Course was successfully destroyed.

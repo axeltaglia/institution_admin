@@ -1,0 +1,22 @@
+<%= form_for @asignature, url: @url, role: :form do |f| %>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <h3 class="box-title"><%= t('owner.asignatures.edit.title') %></h3>
+        </div>
+
+        <div class="panel-body">
+          <%= render partial: 'owner/asignatures/form', locals: { f: f } %>
+        </div>
+
+        <div class="box-footer">
+          <%= link_to t('button.cancel'), owner_asignatures_path, class: 'btn btn-danger' %>
+          <%= f.submit t('button.submit'), class: "btn btn-success" %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>

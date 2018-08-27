@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   namespace :owner do
     root to: 'students#index'
     resources :students
+    resources :asignatures
+    resources :courses
   end
 
   namespace :admin do

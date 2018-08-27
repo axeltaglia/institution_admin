@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+      <h3 class="box-title"><%= t('owner.courses.index.title') %></h3>
+      </div>
+
+      <div class="panel-body">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th><%= t('activerecord.attributes.courses.asignature') %></th>
+              <th><%= t('activerecord.attributes.courses.schedule') %></th>
+              <th><%= t('form.column.actions') %></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @courses.each do |course| %>
+            <tr>
+              <td> 
+                <%= link_to owner_course_path(course) do %> 
+                <%= course.asignature.name %> 
+                <% end %>                
+              </td>
+              <td>
+                <%= course.schedule.full_schedule %> 
+              </td>
+              <td>
+                <div class="btn-row">
+                  <%= link_to raw('<i class="fa fa-eye"></i>'), owner_course_path(course), class: 'btn btn-sm btn-success' %>
+                  <%= link_to raw('<i class="fa fa-pencil"></i>'), edit_owner_course_path(course), class: 'btn btn-sm btn-warning' %>
+                  <%= link_to raw('<i class="fa fa-trash"></i>'), owner_course_path(course), class: 'btn btn-sm btn-danger', method: :delete,
+                  data: { confirm: t('owner.courses.destroy.warning') } %>
+                </div>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+
+          <tfoot>
+            <tr role="row">
+              <th><%= t('activerecord.attributes.courses.asignature') %></th>
+              <th><%= t('activerecord.attributes.courses.schedule') %></th>
+              <th><%= t('form.column.actions') %></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2 col-md-offset-10">
+    <%= link_to t('button.new'), new_owner_course_path, class: 'btn btn-success pull-right' %>
+  </div>
+</div>

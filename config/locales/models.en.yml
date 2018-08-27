@@ -43,3 +43,34 @@ en:
         created_at: Created At
         updated_at: Updated At
 
+      ##############################################
+      #ASIGNATURE
+      ##############################################
+      asignature:
+        name: Name
+        created_at: Created At
+        updated_at: Updated At
+
+      ##############################################
+      #COURSE
+      ##############################################
+      course:
+        name: Name
+        asignature: Asignature
+        schedule: Schedule
+        classroom: Classroom
+        capacity: Capacity
+        duration: Duration
+        frecuency: Frecuency
+        price: Price
+        charging_mode: Charging_mode 
+        created_at: Created At
+        updated_at: Updated At
+
+      ##############################################
+      #COURSE
+      ##############################################
+      schedule:
+        day: Day
+        hour: Hour
+

@@ -1,0 +1,27 @@
+<div class="row">
+	<div class="col-xs-12">
+		<div class="panel panel-default">
+
+			<div class="panel-heading">
+				<h3 class="box-title"><%= t('owner.asignatures.show.title') %></h3>
+			</div>
+
+			<div class="panel-body">
+				<p>
+					<strong><%= t('activerecord.attributes.asignatures.name') %>:</strong>
+					<%= @asignature.name %>
+				</p>
+
+				<%= link_to raw('<i class="fa fa-pencil"></i>'), edit_owner_asignature_url(@asignature), class: 'btn btn-sm btn-warning' %>
+
+				<%= link_to raw('<i class="fa fa-trash"></i>'), owner_asignature_url(@asignature), class: 'btn btn-sm btn-danger', method: :delete,
+                                            data: { confirm: t('owner.asignatures.destroy.warning')} %>
+			</div>
+
+			<div class="box-footer">
+				<%= link_to t('button.back'), owner_asignatures_path, class: 'btn btn-success' %>
+			</div>
+
+		</div>
+	</div>
+</div>

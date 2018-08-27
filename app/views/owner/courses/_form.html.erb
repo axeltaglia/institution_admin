@@ -1,0 +1,31 @@
+
+<div class="form-group">
+  <%= f.label t('activerecord.attributes.course.asignature') %>
+  <%= collection_select(:course, :asignature_id, Asignature.all, :id, :name, {:include_blank => true}, {:class => 'form-control'} ) %>
+  <span class="help-block"><i>* <%= t('validation.required_field')%></i><span>
+</div>
+
+<div class="form-group">
+  <%= f.label t('activerecord.attributes.course.schedule') %>
+  <%= collection_select(:course, :schedule_id, Schedule.all, :id, :full_schedule, {:include_blank => true}, {:class => 'form-control'} ) %>
+  <span class="help-block"><i>* <%= t('validation.required_field')%></i><span>
+</div>
+
+<div class="form-group">
+  <%= f.label t('activerecord.attributes.course.classroom') %>
+  <%= collection_select(:course, :classroom_id, Classroom.all, :id, :name, {:include_blank => true}, {:class => 'form-control'} ) %>
+  <span class="help-block"><i>* <%= t('validation.required_field')%></i><span>
+</div>
+
+<div class="form-group">
+  <%= f.label t('activerecord.attributes.course.capacity') %>
+  <%= f.text_field :capacity, class: "form-control", required: true %>
+  <span class="help-block"><i>* <%= t('validation.required_field')%></i><span>
+</div>
+
+<div class="form-group">
+  <%= f.label t('activerecord.attributes.course.price') %>
+  <%= f.text_field :price, class: "form-control", required: true %>
+  <span class="help-block"><i>* <%= t('validation.required_field')%></i><span>
+</div>
+

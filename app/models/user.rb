@@ -27,11 +27,11 @@ class User < ApplicationRecord
   end
 
   def institution_owner!
-    self.roles = [:institution_owner]
+    self.roles = ['institution_owner']
   end
 
   def student!
-    self.roles = [:student]
+    self.roles = ['student']
   end
 
   # Include default devise modules. Others available are:

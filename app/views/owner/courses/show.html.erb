@@ -1,0 +1,48 @@
+<div class="row">
+	<div class="col-xs-12">
+		<div class="panel panel-default">
+
+			<div class="panel-heading">
+				<h3 class="box-title"><%= t('owner.courses.show.title') %></h3>
+			</div>
+
+			<div class="panel-body">
+				<p>
+					<strong><%= t('activerecord.attributes.courses.asignature') %>:</strong>
+					<%= @course.asignature.name %>
+				</p>
+
+				<p>
+					<strong><%= t('activerecord.attributes.courses.schedule') %>:</strong>
+					<%= @course.schedule.full_schedule %>
+				</p>
+
+				<p>
+					<strong><%= t('activerecord.attributes.courses.classroom') %>:</strong>
+					<%= @course.classroom.name %>
+				</p>
+
+				<p>
+					<strong><%= t('activerecord.attributes.courses.capacity') %>:</strong>
+					<%= @course.capacity %>
+				</p>
+
+
+				<p>
+					<strong><%= t('activerecord.attributes.courses.price') %>:</strong>
+					<%= @course.price %>
+				</p>
+
+				<%= link_to raw('<i class="fa fa-pencil"></i>'), edit_owner_course_url(@course), class: 'btn btn-sm btn-warning' %>
+
+				<%= link_to raw('<i class="fa fa-trash"></i>'), owner_course_url(@course), class: 'btn btn-sm btn-danger', method: :delete,
+                                            data: { confirm: t('owner.courses.destroy.warning')} %>
+			</div>
+
+			<div class="box-footer">
+				<%= link_to t('button.back'), owner_courses_path, class: 'btn btn-success' %>
+			</div>
+
+		</div>
+	</div>
+</div>
