@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180909154210) do
+ActiveRecord::Schema.define(version: 20180916221102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 20180909154210) do
     t.datetime "updated_at",     null: false
     t.integer  "institution_id"
     t.index ["institution_id"], name: "index_classrooms_on_institution_id", using: :btree
+  end
+
+  create_table "contact_informations", force: :cascade do |t|
+    t.integer  "student_id"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "description"
+    t.boolean  "receives_emails"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["student_id"], name: "index_contact_informations_on_student_id", using: :btree
   end
 
   create_table "course_schedules", force: :cascade do |t|
@@ -69,6 +80,17 @@ ActiveRecord::Schema.define(version: 20180909154210) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "fees", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "month"
+    t.integer  "total_to_pay"
+    t.integer  "amount_paid"
+    t.integer  "status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["student_id"], name: "index_fees_on_student_id", using: :btree
+  end
+
   create_table "hours", force: :cascade do |t|
     t.string   "str_time"
     t.string   "seconds_since_midnight"
@@ -89,6 +111,15 @@ ActiveRecord::Schema.define(version: 20180909154210) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.index ["institution_owner_id"], name: "index_institutions_on_institution_owner_id", using: :btree
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string   "description"
+    t.integer  "price"
+    t.integer  "asignature_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["asignature_id"], name: "index_items_on_asignature_id", using: :btree
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -118,6 +149,17 @@ ActiveRecord::Schema.define(version: 20180909154210) do
     t.index ["user_id"], name: "index_students_on_user_id", using: :btree
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "course_id"
+    t.date     "start_date"
+    t.integer  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_subscriptions_on_course_id", using: :btree
+    t.index ["student_id"], name: "index_subscriptions_on_student_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -140,16 +182,21 @@ ActiveRecord::Schema.define(version: 20180909154210) do
 
   add_foreign_key "asignatures", "institutions"
   add_foreign_key "classrooms", "institutions"
+  add_foreign_key "contact_informations", "students"
   add_foreign_key "course_schedules", "classrooms"
   add_foreign_key "course_schedules", "courses"
   add_foreign_key "course_schedules", "days"
   add_foreign_key "courses", "asignatures"
   add_foreign_key "courses", "institutions"
+  add_foreign_key "fees", "students"
   add_foreign_key "institution_owners", "users"
   add_foreign_key "institutions", "institution_owners"
+  add_foreign_key "items", "asignatures"
   add_foreign_key "schedules", "days"
   add_foreign_key "schedules", "hours"
   add_foreign_key "schedules", "institutions"
   add_foreign_key "students", "institutions"
   add_foreign_key "students", "users"
+  add_foreign_key "subscriptions", "courses"
+  add_foreign_key "subscriptions", "students"
 end

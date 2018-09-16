@@ -16,6 +16,7 @@ module Owner
     def new
       @student = Student.new
       @url = owner_students_path
+      @student.subscriptions.build
     end
 
     # GET /students/1/edit
@@ -25,9 +26,8 @@ module Owner
 
     # POST /students
     def create
-      @student = Student.new
       @student = Student.new(student_params)
-      @stuent.institution = @institution
+      @student.institution = @institution
 
       respond_to do |format|
         if @student.save
@@ -73,7 +73,7 @@ module Owner
       end
 
       def student_params
-        params.require(:student).permit(:name, :last_name, :email, :phone, :description)
+        params.require(:student).permit(:name, :last_name, :email, :phone, :description, subscriptions_attributes:[:course_id, :start_date, :status, :_destroy, :id], contact_informations_attributes:[:email, :phone, :description, :receives_emails, :_destroy, :id])
       end
   end
 end

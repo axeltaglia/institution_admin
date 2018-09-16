@@ -12,10 +12,42 @@
 					<%= @student.full_name %>
 				</p>
 
+				<p>
+					<strong>Subscriptions:</strong><br>
+					<% @student.subscriptions.each do |subscription| %>
+					<%= subscription.course.description %> <br>
+					<% end %>
+				</p>
+
 				<%= link_to raw('<i class="fa fa-pencil"></i>'), edit_owner_student_url(@student), class: 'btn btn-sm btn-warning' %>
 
 				<%= link_to raw('<i class="fa fa-trash"></i>'), owner_student_url(@student), class: 'btn btn-sm btn-danger', method: :delete,
                                             data: { confirm: t('admin.students.destroy.warning')} %>
+
+                <hr>
+                <h3>Pagos</h3>
+
+                <table class="table table-bordered table-striped">
+                	<thead>
+			            <tr>
+			              <th>Mes</th>
+			              <th>Estado</th>
+			              <th>Valor</th>
+			              <th>Acciones</th>
+			            </tr>
+		          	</thead>
+
+		          	<tbody>
+		          		<% @student.fees.each do |fee| %>
+		          		<tr>
+		          			<td><%= fee.month %></td>
+		          			<td><%= fee.status %></td>
+		          			<td><%= fee.price %></td>
+		          			<td><%= link_to raw('<i class="fa fa-ok"></i>'), edit_owner_student_url(@student), class: 'btn btn-sm btn-warning' %></td>
+		          		</tr>
+		          		<% end %>
+		          	</tbody>
+                </table>
 			</div>
 
 			<div class="box-footer">

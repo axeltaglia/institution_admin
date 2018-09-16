@@ -21,7 +21,7 @@
 <%= f.nested_fields_for :course_schedules do |ff| %>
   <h3>Cursada</h3>
   
-  <%= ff.remove_nested_fields_link %>
+  <%= ff.remove_nested_fields_link "Eliminar esta cursada" %>
 
   <div class="form-group">
     <%= ff.label t('activerecord.attributes.schedule.day') %>
@@ -43,6 +43,7 @@
     <%= ff.select :classroom_id, options_from_collection_for_select(Classroom.all, "id", "name", ff.object.classroom_id), {:include_blank => true}, {:class => "form-control"} %>
   </div>
 
+  <hr>
 <% end %>
 
 <%= f.add_nested_fields_link :course_schedules %>

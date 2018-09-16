@@ -13,6 +13,10 @@ class Course < ApplicationRecord
     self.course_schedules.each do |course_schedule|
   	  arr << course_schedule.day.name + " " + course_schedule.start_at.str_time + "-" + course_schedule.end_at.str_time
   	end
-  	arr.join("<br>")
+  	arr.join(", ")
+  end
+
+  def description
+    self.asignature.name + " | " + self.complete_schedule
   end
 end
