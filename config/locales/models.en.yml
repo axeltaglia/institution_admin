@@ -59,6 +59,8 @@ en:
         asignature: Asignature
         schedule: Schedule
         classroom: Classroom
+        start_at: Start at
+        end_at: End at
         capacity: Capacity
         duration: Duration
         frecuency: Frecuency

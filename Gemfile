@@ -21,6 +21,7 @@ gem 'sendgrid'
 gem 'layer-handler'
 gem 'friendly_id'
 gem 'cancan'
+gem 'nested_form_fields'
 
 # Only Development env gems
 group :development do

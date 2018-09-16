@@ -16,6 +16,7 @@ module Owner
     # GET /courses/new
     def new
       @course = Course.new
+      @course.course_schedules.build
       @url = owner_courses_path
     end
 
@@ -51,6 +52,7 @@ module Owner
 
     # DELETE /courses/1
     def destroy
+      @course.course_schedules.destroy_all
       @course.destroy
       respond_to do |format|
         format.html { redirect_to owner_courses_url, notice: t('owner.courses.destroy.success') }
@@ -67,7 +69,7 @@ module Owner
       end
 
       def course_params
-        params.require(:course).permit(:asignature_id, :schedule_id, :day_id, :hour_id, :classroom_id, :capacity, :duration, :frecuency, :price, :charging_mode)
+        params.require(:course).permit(:asignature_id, :capacity, :price, :charging_mode, course_schedules_attributes:[:description, :day_id, :start_at_id, :end_at_id, :classroom_id, :_destroy, :id])
       end
   end
 end

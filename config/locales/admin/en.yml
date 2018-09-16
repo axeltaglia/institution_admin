@@ -100,6 +100,7 @@ en:
     ##############################################
     courses:
       title: Courses
+      course: Cursada
       index:
         title: List of Courses
       new:
