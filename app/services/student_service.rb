@@ -1,5 +1,5 @@
 class StudentService
-  def destroy_user(student)
+  def destroy_student(student)
   	  user = student.user
       student.destroy
       user.destroy

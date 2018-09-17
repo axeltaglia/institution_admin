@@ -59,7 +59,12 @@ module Owner
 
     # DELETE /students/1
     def destroy
-      StudentService.destroy_student(@student)
+      user = @student.user
+      @student.subscriptions.destroy_all
+      @student.contact_informations.destroy_all
+      @student.destroy
+      user.destroy
+
       respond_to do |format|
         format.html { redirect_to owner_students_url, notice: t('owner.students.destroy.success') }
       end
@@ -75,7 +80,7 @@ module Owner
       end
 
       def student_params
-        params.require(:student).permit(:name, :last_name, :email, :phone, :description, subscriptions_attributes:[:course_id, :start_date, :status, :_destroy, :id], contact_informations_attributes:[:email, :phone, :description, :receives_emails, :_destroy, :id])
+        params.require(:student).permit(:name, :last_name, :email, :phone, :description, :status, subscriptions_attributes:[:course_id, :start_date, :status, :_destroy, :id], contact_informations_attributes:[:email, :phone, :description, :receives_emails, :_destroy, :id])
       end
   end
 end
