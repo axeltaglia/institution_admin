@@ -63,7 +63,8 @@ module Owner
       @student.subscriptions.destroy_all
       @student.contact_informations.destroy_all
       @student.destroy
-      user.destroy
+      
+      user.destroy if user
 
       respond_to do |format|
         format.html { redirect_to owner_students_url, notice: t('owner.students.destroy.success') }
