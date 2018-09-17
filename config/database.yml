@@ -21,6 +21,7 @@ development:
   username: <%= ENV["DEVELOPMENT_DB_USERNAME"] %>
   host: <%= ENV["DEVELOPMENT_DB_HOST"] %>
   port: <%= ENV["DEVELOPMENT_DB_PORT"] %>
+  password: <%= ENV["DEVELOPMENT_DB_PASSWORD"] %>
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -46,9 +47,10 @@ test:
   database: <%= ENV["TEST_DB_NAME"] %>
   pool: 5
   timeout: 5000
-  username: <%= ENV["DEVELOPMENT_DB_USERNAME"] %>
-  host: <%= ENV["DEVELOPMENT_DB_HOST"] %>
-  port: <%= ENV["DEVELOPMENT_DB_PORT"] %>
+  username: <%= ENV["TEST_DB_USERNAME"] %>
+  host: <%= ENV["TEST_DB_HOST"] %>
+  port: <%= ENV["TEST_DB_PORT"] %>
+  password: <%= ENV["TEST_DB_PASSWORD"] %>
 
 production:
   adapter: postgresql
@@ -59,3 +61,4 @@ production:
   username: <%= ENV["PRODUCTION_DB_USERNAME"] %>
   host: <%= ENV["PRODUCTION_DB_HOST"] %>
   port: <%= ENV["PRODUCTION_DB_PORT"] %>
+  password: <%= ENV["PRODUCTION_DB_PASSWORD"] %>
