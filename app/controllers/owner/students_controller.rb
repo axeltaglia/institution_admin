@@ -17,6 +17,7 @@ module Owner
       @student = Student.new
       @url = owner_students_path
       @student.subscriptions.build
+      @student.contact_informations.build
     end
 
     # GET /students/1/edit
