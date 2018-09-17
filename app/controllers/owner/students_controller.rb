@@ -29,11 +29,11 @@ module Owner
     def create
       @student = Student.new(student_params)
       @student.institution = @institution
-      @student.email = @student.contact_informations.first.email
-      
+      email = @student.contact_informations.first.email
+
       respond_to do |format|
         if @student.save
-          user = User.create!(name: student_params[:name], email: student_params[:email], password: "123456")
+          user = User.create!(name: student_params[:name], email: email, password: "123456")
           user.student!
           user.save
           @student.user = user
