@@ -2,8 +2,13 @@ class StudentMailer < ApplicationMailer
   def receipt_email(fee)
   	@fee = fee
   	@str_month = number_to_month(fee.month)
-  	Rails.logger.debug("AXEL: enviando mail, month --> #{fee.month}")
-    mail(to: "axeltaglia@gmail.com", subject: "BeBop Escuela de Música - Recibo de pago (#{@str_month})")
+
+  	fee.student.contact_informations.each do |contact|
+  		mail(to: contact.email, subject: "BeBop Escuela de Música - Recibo de pago (#{@str_month})")
+  	end
+
+  	mail(to: "axeltaglia@gmail.com", subject: "BeBop Escuela de Música - Recibo de pago (#{@str_month})")
+    
   end
 
   def number_to_month (n)
