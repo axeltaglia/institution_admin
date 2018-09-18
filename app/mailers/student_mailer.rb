@@ -1,13 +1,9 @@
 class StudentMailer < ApplicationMailer
-  def receipt_email(fee)
+  def receipt_email(fee, email_to)
   	@fee = fee
   	@str_month = number_to_month(fee.month)
 
-  	fee.student.contact_informations.each do |contact|
-  		mail(to: contact.email, subject: "BeBop Escuela de Música - Recibo de pago (#{@str_month})")
-  	end
-
-  	mail(to: "axeltaglia@gmail.com", subject: "BeBop Escuela de Música - Recibo de pago (#{@str_month})")
+  	mail(to: email_to, subject: "BeBop Escuela de Música - Recibo de pago (#{@str_month})")
     
   end
 

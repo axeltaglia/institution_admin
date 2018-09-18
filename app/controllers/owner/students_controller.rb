@@ -77,7 +77,10 @@ module Owner
       fee.amount_paid = fee.total_to_pay
       fee.save
 
-      StudentMailer.receipt_email(fee).deliver_now
+      fee.student.contact_informations.each do |contact|
+        StudentMailer.receipt_email(fee, contact.email).deliver_now
+      end
+      
       respond_to do |format|
         format.html { redirect_to owner_student_path(@student), notice: "The payment was successful." }
       end
