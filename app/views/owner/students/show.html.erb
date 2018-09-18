@@ -38,11 +38,11 @@
 		          	</thead>
 
 		          	<tbody>
-		          		<% @student.fees.each do |fee| %>
+		          		<% @student.fees.order(month: :desc).each do |fee| %>
 		          		<tr>
 		          			<td><%= fee.month %></td>
 		          			<td><%= fee.status %></td>
-		          			<td><%= fee.price %></td>
+		          			<td><%= fee.total_to_pay %></td>
 		          			<td><%= link_to raw('<i class="fa fa-ok"></i>'), edit_owner_student_url(@student), class: 'btn btn-sm btn-warning' %></td>
 		          		</tr>
 		          		<% end %>

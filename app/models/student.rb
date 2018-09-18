@@ -10,6 +10,8 @@ class Student < ApplicationRecord
 
   has_many :fees
 
+  scope :actives, -> { where(status: 1) }
+
   def full_name
     "#{self.name} #{self.last_name}"
   end
