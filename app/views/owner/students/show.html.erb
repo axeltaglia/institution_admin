@@ -43,7 +43,7 @@
 		          			<td><%= fee.month %></td>
 		          			<td><%= fee.status %></td>
 		          			<td><%= fee.total_to_pay %></td>
-		          			<td><%= link_to raw('<i class="fa fa-ok"></i>'), edit_owner_student_url(@student), class: 'btn btn-sm btn-warning' %></td>
+		          			<td><%= link_to raw('<i class="fa fa-ok"></i>'), owner_student_pay_fee_url(@student, fee), class: 'btn btn-sm btn-warning' %></td>
 		          		</tr>
 		          		<% end %>
 		          	</tbody>

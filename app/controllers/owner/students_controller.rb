@@ -1,6 +1,6 @@
 module Owner
   class StudentsController < Owner::BaseController
-    before_action :set_student, only: [:show, :edit, :update, :destroy]
+    before_action :set_student, only: [:show, :edit, :update, :destroy, :pay_fee]
     before_action :set_institution, only: [:create]
 
     # GET /students
@@ -68,6 +68,23 @@ module Owner
 
       respond_to do |format|
         format.html { redirect_to owner_students_url, notice: t('owner.students.destroy.success') }
+      end
+    end
+
+    def pay_fee
+      Rails.logger.debug("AXEL: fee_id #{params[:fee_id]}")
+      fee = Fee.find(params[:fee_id])
+      Rails.logger.debug("AXEL: antes #{fee.pending?}")
+      if fee and fee.pending?
+        Rails.logger.debug("AXEL: entro #{fee.status}")
+
+        fee.payed!
+        fee.amount_paid = fee.total_to_pay
+        fee.save
+        StudentMailer.receipt_email(fee).deliver_now
+      end
+      respond_to do |format|
+        format.html { redirect_to owner_student_path(@student), notice: "The payment was successful." }
       end
     end
 

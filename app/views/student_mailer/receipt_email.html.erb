@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2>Recibo virtual</h2>
+    <p>
+      <b>BeBop Escuela de Música</b> informa que se ha recibido el pago del alumno <%= @fee.student.full_name %> por el mes de <b><%= @str_month  %></b>
+    </p>
+
+    <h3>Detalle</h3>
+    <p>
+      <% @fee.items.each do |item| %>
+        <b>Clases de <%= item.description %></b> - $<%= item.price %><br>
+      <% end %>
+      <b>TOTAL: </b> $<%= @fee.total_to_pay %> 
+    </p>
+
+    <p>
+      Atentamente, <br> 
+      BeBop Escuela de Música
+    </p>
+    <p><i>Sistema automático de Administración de Instituciones</i></p>
+  </body>
+</html>

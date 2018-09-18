@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :students
     resources :asignatures
     resources :courses
+    get '/pay_fee/:id/:fee_id', to: 'students#pay_fee', as: 'student_pay_fee'
   end
 
   namespace :admin do

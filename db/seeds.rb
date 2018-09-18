@@ -25,8 +25,8 @@ Hour.find_or_create_by!(:str_time => "18:00", :seconds_since_midnight => Time.pa
 Hour.find_or_create_by!(:str_time => "18:30", :seconds_since_midnight => Time.parse("18:30").seconds_since_midnight.to_i)
 Hour.find_or_create_by!(:str_time => "19:00", :seconds_since_midnight => Time.parse("19:00").seconds_since_midnight.to_i)
 Hour.find_or_create_by!(:str_time => "19:30", :seconds_since_midnight => Time.parse("19:30").seconds_since_midnight.to_i)
-Hour.find_or_create_by!(:str_time => "20:00", :seconds_since_midnight => Time.par19("20:00").seconds_since_midnight.to_i)
-Hour.find_or_create_by!(:str_time => "20:30", :seconds_since_midnight => Time.par19("20:30").seconds_since_midnight.to_i)
+Hour.find_or_create_by!(:str_time => "20:00", :seconds_since_midnight => Time.parse("20:00").seconds_since_midnight.to_i)
+Hour.find_or_create_by!(:str_time => "20:30", :seconds_since_midnight => Time.parse("20:30").seconds_since_midnight.to_i)
 
 # User with Institution Owner
 user = User.find_or_create_by!(
