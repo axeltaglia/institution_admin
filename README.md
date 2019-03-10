@@ -346,9 +346,8 @@ cd /home/axel/projects/institution_admin
 git pull origin development
 bundle install
 bin/rake db:migrate RAILS_ENV=production
-
-```
-
-```
+rake assets:precompile RAILS_ENV=production
+cd ..
 sudo cp -Rf institution_admin /var/www/html/
+
 ```
