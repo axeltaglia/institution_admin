@@ -336,3 +336,19 @@ O bien configurar git para que resuelva de forma automática el conflicto genera
 https://tbaggery.com/2010/10/24/reduce-your-rails-schema-conflicts.html
 
 
+
+## Deploy --> Production
+
+Vamos al directorio del proyecto: 
+
+```
+cd /home/axel/projects/institution_admin
+git pull origin development
+bundle install
+bin/rake db:migrate RAILS_ENV=production
+
+```
+
+```
+sudo cp -Rf institution_admin /var/www/html/
+```
