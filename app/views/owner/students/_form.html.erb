@@ -57,12 +57,7 @@
 
   <div class="form-group">
     <%= ff.label "Select subscription" %>
-    <%= ff.select :course_id, options_from_collection_for_select(Course.all, "id", "description", ff.object.course_id), {:include_blank => true}, {:class => "form-control"}  %>
-  </div>
-
-  <div class="form-group">
-    <%= ff.label "Select subscription" %>
-    <%= ff.text_field :start_date, value: ff.object.start_date || Time.now.strftime("%Y/%m/%d"), class: "form-control"  %>
+    <%= ff.select :asignature_id, options_from_collection_for_select(Asignature.all, "id", "name", ff.object.asignature_id), {:include_blank => true}, {:class => "form-control"}  %>
   </div>
 
   <div class="form-group">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190310191809) do
+ActiveRecord::Schema.define(version: 20190316144152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20190310191809) do
   create_table "classrooms", force: :cascade do |t|
     t.string   "name"
     t.integer  "number"
+    t.integer  "institution_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "institution_id"
     t.index ["institution_id"], name: "index_classrooms_on_institution_id", using: :btree
   end
 
@@ -44,40 +44,8 @@ ActiveRecord::Schema.define(version: 20190310191809) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string   "email"
-    t.string   "phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "course_schedules", force: :cascade do |t|
-    t.integer  "course_id"
-    t.integer  "day_id"
-    t.integer  "start_at_id"
-    t.integer  "end_at_id"
-    t.integer  "classroom_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "description"
-    t.index ["classroom_id"], name: "index_course_schedules_on_classroom_id", using: :btree
-    t.index ["course_id"], name: "index_course_schedules_on_course_id", using: :btree
-    t.index ["day_id"], name: "index_course_schedules_on_day_id", using: :btree
-    t.index ["end_at_id"], name: "index_course_schedules_on_end_at_id", using: :btree
-    t.index ["start_at_id"], name: "index_course_schedules_on_start_at_id", using: :btree
-  end
-
-  create_table "courses", force: :cascade do |t|
-    t.integer  "asignature_id"
-    t.integer  "capacity"
-    t.float    "duration"
-    t.integer  "frecuency"
-    t.integer  "price"
-    t.integer  "charging_mode"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "institution_id"
-    t.index ["asignature_id"], name: "index_courses_on_asignature_id", using: :btree
-    t.index ["institution_id"], name: "index_courses_on_institution_id", using: :btree
+    t.string "email"
+    t.string "phone"
   end
 
   create_table "days", force: :cascade do |t|
@@ -133,14 +101,18 @@ ActiveRecord::Schema.define(version: 20190310191809) do
   end
 
   create_table "schedules", force: :cascade do |t|
+    t.integer  "subscription_id"
     t.integer  "day_id"
-    t.integer  "hour_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "institution_id"
+    t.integer  "start_at_id"
+    t.integer  "end_at_id"
+    t.integer  "classroom_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["classroom_id"], name: "index_schedules_on_classroom_id", using: :btree
     t.index ["day_id"], name: "index_schedules_on_day_id", using: :btree
-    t.index ["hour_id"], name: "index_schedules_on_hour_id", using: :btree
-    t.index ["institution_id"], name: "index_schedules_on_institution_id", using: :btree
+    t.index ["end_at_id"], name: "index_schedules_on_end_at_id", using: :btree
+    t.index ["start_at_id"], name: "index_schedules_on_start_at_id", using: :btree
+    t.index ["subscription_id"], name: "index_schedules_on_subscription_id", using: :btree
   end
 
   create_table "students", force: :cascade do |t|
@@ -161,12 +133,11 @@ ActiveRecord::Schema.define(version: 20190310191809) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "student_id"
-    t.integer  "course_id"
-    t.date     "start_date"
+    t.integer  "asignature_id"
     t.integer  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_subscriptions_on_course_id", using: :btree
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["asignature_id"], name: "index_subscriptions_on_asignature_id", using: :btree
     t.index ["student_id"], name: "index_subscriptions_on_student_id", using: :btree
   end
 
@@ -193,21 +164,16 @@ ActiveRecord::Schema.define(version: 20190310191809) do
   add_foreign_key "asignatures", "institutions"
   add_foreign_key "classrooms", "institutions"
   add_foreign_key "contact_informations", "students"
-  add_foreign_key "course_schedules", "classrooms"
-  add_foreign_key "course_schedules", "courses"
-  add_foreign_key "course_schedules", "days"
-  add_foreign_key "courses", "asignatures"
-  add_foreign_key "courses", "institutions"
   add_foreign_key "fees", "students"
   add_foreign_key "institution_owners", "users"
   add_foreign_key "institutions", "institution_owners"
   add_foreign_key "items", "asignatures"
   add_foreign_key "items", "fees"
+  add_foreign_key "schedules", "classrooms"
   add_foreign_key "schedules", "days"
-  add_foreign_key "schedules", "hours"
-  add_foreign_key "schedules", "institutions"
+  add_foreign_key "schedules", "subscriptions"
   add_foreign_key "students", "institutions"
   add_foreign_key "students", "users"
-  add_foreign_key "subscriptions", "courses"
+  add_foreign_key "subscriptions", "asignatures"
   add_foreign_key "subscriptions", "students"
 end

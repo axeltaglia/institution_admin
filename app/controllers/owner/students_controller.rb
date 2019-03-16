@@ -98,7 +98,11 @@ module Owner
       end
 
       def student_params
-        params.require(:student).permit(:name, :last_name, :email, :phone, :description, :status, subscriptions_attributes:[:course_id, :start_date, :status, :_destroy, :id], contact_informations_attributes:[:email, :phone, :description, :receives_emails, :_destroy, :id])
+        params.require(:student).permit(
+            :name, :last_name, :email, :phone, :description, :status, 
+            subscriptions_attributes:[:asignature_id, :status, :_destroy, :id], 
+            contact_informations_attributes:[:email, :phone, :description, :receives_emails, :_destroy, :id]
+            )
       end
   end
 end

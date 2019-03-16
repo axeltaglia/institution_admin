@@ -17,6 +17,8 @@ Day.find_or_create_by!(:name => "Viernes", :number => 5)
 Day.find_or_create_by!(:name => "Sábado", :number => 6)
 
 # Hours
+Hour.find_or_create_by!(:str_time => "15:00", :seconds_since_midnight => Time.parse("15:00").seconds_since_midnight.to_i)
+Hour.find_or_create_by!(:str_time => "15:30", :seconds_since_midnight => Time.parse("15:30").seconds_since_midnight.to_i)
 Hour.find_or_create_by!(:str_time => "16:00", :seconds_since_midnight => Time.parse("16:00").seconds_since_midnight.to_i)
 Hour.find_or_create_by!(:str_time => "16:30", :seconds_since_midnight => Time.parse("16:30").seconds_since_midnight.to_i)
 Hour.find_or_create_by!(:str_time => "17:00", :seconds_since_midnight => Time.parse("17:00").seconds_since_midnight.to_i)
@@ -49,20 +51,20 @@ Classroom.find_or_create_by!(:name => "Aula 2", :number => 2, :institution_id =>
 Classroom.find_or_create_by!(:name => "Aula 3", :number => 3, :institution_id => institution.id)
 
 # BeBop Schedules
-Schedule.find_or_create_by!(:day_id => Day.find_by_name("Martes").id, :hour_id => Hour.find_by_str_time("16:00").id, :institution_id => institution.id)
-Schedule.find_or_create_by!(:day_id => Day.find_by_name("Martes").id, :hour_id => Hour.find_by_str_time("17:00").id, :institution_id => institution.id)
-Schedule.find_or_create_by!(:day_id => Day.find_by_name("Martes").id, :hour_id => Hour.find_by_str_time("18:00").id, :institution_id => institution.id)
-Schedule.find_or_create_by!(:day_id => Day.find_by_name("Martes").id, :hour_id => Hour.find_by_str_time("19:00").id, :institution_id => institution.id)
+#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Martes").id, :hour_id => Hour.find_by_str_time("16:00").id, :institution_id => institution.id)
+#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Martes").id, :hour_id => Hour.find_by_str_time("17:00").id, :institution_id => institution.id)
+#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Martes").id, :hour_id => Hour.find_by_str_time("18:00").id, :institution_id => institution.id)
+#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Martes").id, :hour_id => Hour.find_by_str_time("19:00").id, :institution_id => institution.id)
 
-Schedule.find_or_create_by!(:day_id => Day.find_by_name("Miércoles").id, :hour_id => Hour.find_by_str_time("16:30").id, :institution_id => institution.id)
-Schedule.find_or_create_by!(:day_id => Day.find_by_name("Miércoles").id, :hour_id => Hour.find_by_str_time("17:30").id, :institution_id => institution.id)
-Schedule.find_or_create_by!(:day_id => Day.find_by_name("Miércoles").id, :hour_id => Hour.find_by_str_time("18:30").id, :institution_id => institution.id)
-Schedule.find_or_create_by!(:day_id => Day.find_by_name("Miércoles").id, :hour_id => Hour.find_by_str_time("19:30").id, :institution_id => institution.id)
+#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Miércoles").id, :hour_id => Hour.find_by_str_time("16:30").id, :institution_id => institution.id)
+#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Miércoles").id, :hour_id => Hour.find_by_str_time("17:30").id, :institution_id => institution.id)
+#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Miércoles").id, :hour_id => Hour.find_by_str_time("18:30").id, :institution_id => institution.id)
+#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Miércoles").id, :hour_id => Hour.find_by_str_time("19:30").id, :institution_id => institution.id)
 
-Schedule.find_or_create_by!(:day_id => Day.find_by_name("Jueves").id, :hour_id => Hour.find_by_str_time("16:30").id, :institution_id => institution.id)
-Schedule.find_or_create_by!(:day_id => Day.find_by_name("Jueves").id, :hour_id => Hour.find_by_str_time("17:30").id, :institution_id => institution.id)
-Schedule.find_or_create_by!(:day_id => Day.find_by_name("Jueves").id, :hour_id => Hour.find_by_str_time("18:30").id, :institution_id => institution.id)
-Schedule.find_or_create_by!(:day_id => Day.find_by_name("Jueves").id, :hour_id => Hour.find_by_str_time("19:30").id, :institution_id => institution.id)
+#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Jueves").id, :hour_id => Hour.find_by_str_time("16:30").id, :institution_id => institution.id)
+#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Jueves").id, :hour_id => Hour.find_by_str_time("17:30").id, :institution_id => institution.id)
+#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Jueves").id, :hour_id => Hour.find_by_str_time("18:30").id, :institution_id => institution.id)
+#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Jueves").id, :hour_id => Hour.find_by_str_time("19:30").id, :institution_id => institution.id)
 
 # BeBop Asignatures
 
@@ -71,7 +73,8 @@ Asignature.find_or_create_by!(:name => "Canto", :institution_id => institution.i
 Asignature.find_or_create_by!(:name => "Guitarra", :institution_id => institution.id)
 Asignature.find_or_create_by!(:name => "Bajo", :institution_id => institution.id)
 Asignature.find_or_create_by!(:name => "Batería", :institution_id => institution.id)
-Asignature.find_or_create_by!(:name => "Taller Musical", :institution_id => institution.id)
+Asignature.find_or_create_by!(:name => "Iniciación Musical", :institution_id => institution.id)
+Asignature.find_or_create_by!(:name => "Canto y Ukelele", :institution_id => institution.id)
 
 
 
