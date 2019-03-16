@@ -53,18 +53,39 @@
 <h3>Subscripciones</h3>
 <%= f.nested_fields_for :subscriptions do |ff| %>
   
-  <%= ff.remove_nested_fields_link "Eliminar esta suscripción" %> <br>
-
   <div class="form-group">
-    <%= ff.label "Select subscription" %>
+    <%= ff.label "Asignatura" %>
     <%= ff.select :asignature_id, options_from_collection_for_select(Asignature.all, "id", "name", ff.object.asignature_id), {:include_blank => true}, {:class => "form-control"}  %>
   </div>
 
+  <!--
   <div class="form-group">
-    <%= ff.label "Estado" %>
-    <%= ff.select :status, [['Activo', 1], ['Inactivo', 0], ['Suspendido', 2]], { :include_blank => true }, {:class => "form-control"} %>
+    <%# ff.label "Estado" %>
+    <%# ff.select :status, [['Activo', 1], ['Inactivo', 0], ['Suspendido', 2]], { :include_blank => true }, {:class => "form-control"} %>
+  </div>
+  -->
+
+  <div class="form-group">
+    <%= ff.label "Día de la semana" %>
+    <%= ff.select :day_id, options_from_collection_for_select(Day.all, "id", "name", ff.object.day_id), {:include_blank => true}, {:class => "form-control"}  %>
   </div>
 
+  <div class="form-group">
+    <%= ff.label "Comienza" %>
+    <%= ff.select :start_at_id, options_from_collection_for_select(Hour.all, "id", "str_time", ff.object.start_at_id), {:include_blank => true}, {:class => "form-control"}  %>
+  </div>
+
+  <div class="form-group">
+    <%= ff.label "Finaliza" %>
+    <%= ff.select :end_at_id, options_from_collection_for_select(Hour.all, "id", "str_time", ff.object.end_at_id), {:include_blank => true}, {:class => "form-control"}  %>
+  </div>
+
+  <div class="form-group">
+    <%= ff.label "Aula" %>
+    <%= ff.select :classroom_id, options_from_collection_for_select(Classroom.all, "id", "name", ff.object.classroom_id), {:include_blank => true}, {:class => "form-control"}  %>
+  </div>
+
+  <%= ff.remove_nested_fields_link "Eliminar esta suscripción" %> <br>
   <hr>
 <% end %>
 

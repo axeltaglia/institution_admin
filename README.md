@@ -200,10 +200,10 @@ bin/rake db:dev_seed RAILS_ENV=development
 
 Nota: Otra forma de levantar la base (en vez de db:setup) es correr todas las migraciones. De esta manera podemos crear la base de datos a mano y luego ejecutar el siguiente comando:
 ```
-RAILS_ENV=production bin/rake db:drop
-RAILS_ENV=production bin/rake db:create
-RAILS_ENV=production bin/rake db:migrate
-RAILS_ENV=production bin/rake db:seed
+RAILS_ENV=development bin/rake db:drop
+RAILS_ENV=development bin/rake db:create
+RAILS_ENV=development bin/rake db:migrate
+RAILS_ENV=development bin/rake db:seed
 ```
 
 Para ejecutar el proyecto de forma local:

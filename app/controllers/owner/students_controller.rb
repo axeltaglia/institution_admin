@@ -16,8 +16,8 @@ module Owner
     def new
       @student = Student.new
       @url = owner_students_path
-      @student.subscriptions.build
       @student.contact_informations.build
+      @student.subscriptions.build
     end
 
     # GET /students/1/edit
@@ -33,14 +33,11 @@ module Owner
 
       respond_to do |format|
         if @student.save
-          user = User.create!(name: student_params[:name], email: email, password: "123456")
-          user.student!
-          user.save
-          @student.user = user
           @student.save
-
           format.html { redirect_to owner_students_path, notice: t('owner.students.create.success') }
         else
+          @url = owner_students_path
+          flash[:warning] = @student.errors.full_messages.uniq.join(', ')
           format.html { render :new }
         end
       end
@@ -52,6 +49,8 @@ module Owner
         if @student.update(student_params)
           format.html { redirect_to owner_students_path, notice: t('owner.students.update.success') }
         else
+          @url = owner_students_path
+          flash[:warning] = @student.errors.full_messages.uniq.join(', ')
           format.html { render :edit }
         end
       end
@@ -59,13 +58,10 @@ module Owner
 
     # DELETE /students/1
     def destroy
-      user = @student.user
       @student.subscriptions.destroy_all
       @student.contact_informations.destroy_all
       @student.destroy
       
-      user.destroy if user
-
       respond_to do |format|
         format.html { redirect_to owner_students_url, notice: t('owner.students.destroy.success') }
       end
@@ -99,10 +95,32 @@ module Owner
 
       def student_params
         params.require(:student).permit(
-            :name, :last_name, :email, :phone, :description, :status, 
-            subscriptions_attributes:[:asignature_id, :status, :_destroy, :id], 
-            contact_informations_attributes:[:email, :phone, :description, :receives_emails, :_destroy, :id]
-            )
+          :name, 
+          :last_name, 
+          :email, 
+          :phone, 
+          :description, 
+          :status, 
+          contact_informations_attributes:[
+            :email, 
+            :phone, 
+            :description, 
+            :receives_emails, 
+            :_destroy, 
+            :id
+          ],
+          subscriptions_attributes:[
+            :asignature_id, 
+            :status, 
+            :day_id, 
+            :start_at_id, 
+            :end_at_id, 
+            :classroom_id, 
+            :_destroy, 
+            :id
+          ], 
+          
+        )
       end
   end
 end
