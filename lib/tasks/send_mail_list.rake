@@ -3,7 +3,7 @@ namespace :contacts  do
     task :promotion_email => :environment do |t|
       
       Contact.each do |contact|
-          AdvertisingMailer.receipt_email(fee, "axeltaglia@gmail.com").deliver_now
+          AdvertisingMailer.promotion_email(contact.email).deliver_now
           puts "[EMAIL SENT] --> #{contact.email}"
         end
       end
