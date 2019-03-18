@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
     resources :users
     resources :institutions
+    get '/send_promotion_email', to: 'dashboard#send_promotion_email', as: 'send_promotion_email'
     get '/edit_password/:id', to: 'users#edit_password', as: 'user_edit_password'
   end
 
