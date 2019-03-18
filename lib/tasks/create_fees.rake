@@ -5,6 +5,7 @@ namespace :fees  do
     year = args.year
     
     Student.actives.each do |student|
+      puts "[Checking student] --> #{student.full_name}"
       if student.fees.where(month: month).empty?
         
         fee = student.fees.create!(
