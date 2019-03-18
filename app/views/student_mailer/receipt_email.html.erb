@@ -7,13 +7,13 @@
   <body>
     <h2>Recibo virtual</h2>
     <p>
-      <b>BeBop Escuela de Música</b> informa que se ha recibido el pago del alumno <%= @fee.student.full_name %> por el mes de <b><%= @str_month  %></b>
+      <b>BeBop Escuela de Música</b> informa que se ha recibido el pago referido a las clases de <i><%= @fee.student.full_name %></i> por el mes de <b><%= @str_month  %></b>
     </p>
 
     <h3>Detalle</h3>
     <p>
       <% @fee.items.each do |item| %>
-        <b>Clases de <%= item.description %></b> - $<%= item.price %><br>
+        <b>Clases de <%= item.asignature_name %></b> - <%= item.day %> de <%= item.start_at %> a <%= item.end_at %> - $<%= item.price %><br>
       <% end %>
       <b>TOTAL: </b> $<%= @fee.total_to_pay %> 
     </p>

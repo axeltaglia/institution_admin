@@ -92,13 +92,16 @@ ActiveRecord::Schema.define(version: 20190310191809) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string   "description"
-    t.integer  "subscription_id"
+    t.string   "asignature_name"
+    t.integer  "subscription_price"
+    t.string   "day"
+    t.string   "start_at"
+    t.string   "end_at"
+    t.string   "classroom"
     t.integer  "fee_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.index ["fee_id"], name: "index_items_on_fee_id", using: :btree
-    t.index ["subscription_id"], name: "index_items_on_subscription_id", using: :btree
   end
 
   create_table "students", force: :cascade do |t|
@@ -163,7 +166,6 @@ ActiveRecord::Schema.define(version: 20190310191809) do
   add_foreign_key "fees", "students"
   add_foreign_key "institution_owners", "institutions"
   add_foreign_key "items", "fees"
-  add_foreign_key "items", "subscriptions"
   add_foreign_key "students", "institutions"
   add_foreign_key "subscriptions", "asignatures"
   add_foreign_key "subscriptions", "classrooms"

@@ -34,7 +34,7 @@ module Owner
       respond_to do |format|
         if @student.save
           @student.save
-          format.html { redirect_to owner_students_path, notice: t('owner.students.create.success') }
+          format.html { redirect_to owner_subscriptions_path, notice: t('owner.students.create.success') }
         else
           @url = owner_students_path
           flash[:warning] = @student.errors.full_messages.uniq.join(', ')
@@ -47,7 +47,7 @@ module Owner
     def update
       respond_to do |format|
         if @student.update(student_params)
-          format.html { redirect_to owner_students_path, notice: t('owner.students.update.success') }
+          format.html { redirect_to owner_subscriptions_path, notice: t('owner.students.update.success') }
         else
           @url = owner_students_path
           flash[:warning] = @student.errors.full_messages.uniq.join(', ')
@@ -74,10 +74,10 @@ module Owner
       fee.save
 
       fee.student.contact_informations.each do |contact|
-        StudentMailer.receipt_email(fee, contact.email).deliver_now
+        StudentMailer.receipt_email(fee, "axeltaglia@gmail.com").deliver_now
       end
 
-      StudentMailer.receipt_email(fee, "axeltaglia@gmail.com").deliver_now
+      #StudentMailer.receipt_email(fee, "axeltaglia@gmail.com").deliver_now
       
       respond_to do |format|
         format.html { redirect_to owner_student_path(@student), notice: "The payment was successful." }
@@ -115,7 +115,8 @@ module Owner
             :day_id, 
             :start_at_id, 
             :end_at_id, 
-            :classroom_id, 
+            :classroom_id,
+            :price, 
             :_destroy, 
             :id
           ], 

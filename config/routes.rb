@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 
   namespace :owner do
-    root to: 'students#index'
+    root to: 'subscriptions#index'
     resources :students
     resources :asignatures
     resources :subscriptions

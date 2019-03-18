@@ -15,12 +15,19 @@ namespace :fees  do
         )
 
         total_to_pay = 0
-        student.subscriptions.each do |subscription|
-          total_to_pay += subscription.course.price
+        subscriptions = 
+          student.subscriptions
+            .where(status: 1)
+
+        subscriptions.each do |subscription|
+          total_to_pay += subscription.price
           fee.items.create!(
-            description: subscription.course.asignature.name,
-            price: subscription.course.price,
-            asignature: subscription.course.asignature
+            asignature_name: subscription.asignature.name,
+            subscription_price: subscription.price,
+            day: subscription.day.name,
+            start_at: subscription.start_at.str_time,
+            end_at: subscription.end_at.str_time,
+            classroom: subscription.classroom.name
           )
         end
 
