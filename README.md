@@ -351,3 +351,15 @@ cd ..
 sudo cp -Rf institution_admin /var/www/html/
 
 ```
+
+## Generar pagos
+
+```
+RAILS_ENV=production bin/rake fees:create[3,2019]
+```
+
+## Log de errores (production)
+
+```
+tail -f /var/log/apache2/error.log
+```

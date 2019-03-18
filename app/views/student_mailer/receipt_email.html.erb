@@ -13,7 +13,7 @@
     <h3>Detalle</h3>
     <p>
       <% @fee.items.each do |item| %>
-        <b>Clases de <%= item.asignature_name %></b> - <%= item.day %> de <%= item.start_at %> a <%= item.end_at %> - $<%= item.price %><br>
+        <b>Clases de <%= item.asignature_name %></b> - <%= item.day %> de <%= item.start_at %> a <%= item.end_at %> - $<%= item.subscription_price %><br>
       <% end %>
       <b>TOTAL: </b> $<%= @fee.total_to_pay %> 
     </p>
