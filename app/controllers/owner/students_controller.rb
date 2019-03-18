@@ -69,14 +69,15 @@ module Owner
 
     def pay_fee
       fee = Fee.find(params[:fee_id])
-      fee.payed!
-      fee.amount_paid = fee.total_to_pay
-      fee.save
-
+  
       fee.student.contact_informations.each do |contact|
         StudentMailer.receipt_email(fee, "axeltaglia@gmail.com").deliver_now
       end
 
+      fee.payed!
+      fee.amount_paid = fee.total_to_pay
+      fee.save
+      
       #StudentMailer.receipt_email(fee, "axeltaglia@gmail.com").deliver_now
       
       respond_to do |format|

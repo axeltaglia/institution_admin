@@ -349,7 +349,7 @@ bin/rake db:migrate RAILS_ENV=production
 rake assets:precompile RAILS_ENV=production
 cd ..
 sudo cp -Rf institution_admin /var/www/html/
-
+sudo /etc/init.d/apache2 restart
 ```
 
 ## Generar pagos
