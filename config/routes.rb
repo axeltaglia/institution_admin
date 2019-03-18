@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     root to: 'students#index'
     resources :students
     resources :asignatures
-    resources :courses
+    resources :subscriptions
     get '/pay_fee/:id/:fee_id', to: 'students#pay_fee', as: 'student_pay_fee'
   end
 
