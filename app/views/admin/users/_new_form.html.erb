@@ -22,11 +22,13 @@
   <span class="help-block"><i>* <%= t('validation.required_field')%></i><span>
 </div>
 
+<!--
 <div class="form-group">
   <h3><%= t('activerecord.attributes.user.roles_mask') %></h3>
-  <% for role in User::ROLES %>
-    <%= check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"} %>
-    <%= label_tag "user_roles_#{role}", role.humanize %><br />
-  <% end %>
-  <%= hidden_field_tag "user[roles][]", "" %>
+  <%# for role in User::ROLES %>
+    <%# check_box_tag "user[roles][#{role}]", role, @user.roles.include?(role), {:name => "user[roles][]"}%>
+    <%# label_tag "user_roles_#{role}", role.humanize %><br />
+  <%# end %>
+  <%# hidden_field_tag "user[roles][]", "" %>
 </div>
+-->

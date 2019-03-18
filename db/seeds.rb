@@ -30,44 +30,43 @@ Hour.find_or_create_by!(:str_time => "19:30", :seconds_since_midnight => Time.pa
 Hour.find_or_create_by!(:str_time => "20:00", :seconds_since_midnight => Time.parse("20:00").seconds_since_midnight.to_i)
 Hour.find_or_create_by!(:str_time => "20:30", :seconds_since_midnight => Time.parse("20:30").seconds_since_midnight.to_i)
 
+# BeBop Institution
+institution = Institution.find_or_create_by!(:name => "BeBop Escuela de Música")
+
+#axel_institution_owner_profile = InstitutionOwner.find_or_create_by!(institution_id: institution.id)
+
 # User with Institution Owner
-user = User.find_or_create_by!(
+axel = User.find_or_create_by!(
 	:name => "Axel Tagliapietra",
 	:email => "axeltaglia@gmail.com"
-) do |user|
-	user.password = "123456"
- 	user.password_confirmation = "123456"
- 	user.institution_owner!
+) do |axel|
+	axel.password = "123456"
+ 	axel.password_confirmation = "123456"
+	axel.institution_owner!(institution)
+	axel.admin!
+	puts "User axel was created"
 end
 
-user.institution_owner = InstitutionOwner.find_or_create_by!(user_id: user.id)
 
-# BeBop Institution
-institution = Institution.find_or_create_by!(:name => "BeBop Escuela de Música", :institution_owner_id => user.institution_owner.id)
+ceci = User.find_or_create_by!(
+	:name => "Cecilia Sennhauser",
+	:email => "sennhauserc@gmail.com"
+) do |ceci|
+	ceci.password = "123456"
+ 	ceci.password_confirmation = "123456"
+	ceci.institution_owner!(institution)
+	puts "User ceci was created"
+end
+
+
 
 # BeBop Classrooms
 Classroom.find_or_create_by!(:name => "Aula 1", :number => 1, :institution_id => institution.id)
 Classroom.find_or_create_by!(:name => "Aula 2", :number => 2, :institution_id => institution.id)
 Classroom.find_or_create_by!(:name => "Aula 3", :number => 3, :institution_id => institution.id)
 
-# BeBop Schedules
-#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Martes").id, :hour_id => Hour.find_by_str_time("16:00").id, :institution_id => institution.id)
-#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Martes").id, :hour_id => Hour.find_by_str_time("17:00").id, :institution_id => institution.id)
-#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Martes").id, :hour_id => Hour.find_by_str_time("18:00").id, :institution_id => institution.id)
-#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Martes").id, :hour_id => Hour.find_by_str_time("19:00").id, :institution_id => institution.id)
-
-#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Miércoles").id, :hour_id => Hour.find_by_str_time("16:30").id, :institution_id => institution.id)
-#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Miércoles").id, :hour_id => Hour.find_by_str_time("17:30").id, :institution_id => institution.id)
-#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Miércoles").id, :hour_id => Hour.find_by_str_time("18:30").id, :institution_id => institution.id)
-#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Miércoles").id, :hour_id => Hour.find_by_str_time("19:30").id, :institution_id => institution.id)
-
-#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Jueves").id, :hour_id => Hour.find_by_str_time("16:30").id, :institution_id => institution.id)
-#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Jueves").id, :hour_id => Hour.find_by_str_time("17:30").id, :institution_id => institution.id)
-#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Jueves").id, :hour_id => Hour.find_by_str_time("18:30").id, :institution_id => institution.id)
-#Schedule.find_or_create_by!(:day_id => Day.find_by_name("Jueves").id, :hour_id => Hour.find_by_str_time("19:30").id, :institution_id => institution.id)
 
 # BeBop Asignatures
-
 Asignature.find_or_create_by!(:name => "Piano", :institution_id => institution.id)
 Asignature.find_or_create_by!(:name => "Canto", :institution_id => institution.id)
 Asignature.find_or_create_by!(:name => "Guitarra", :institution_id => institution.id)

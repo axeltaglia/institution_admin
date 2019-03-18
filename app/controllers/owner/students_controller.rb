@@ -1,11 +1,11 @@
 module Owner
   class StudentsController < Owner::BaseController
     before_action :set_student, only: [:show, :edit, :update, :destroy, :pay_fee]
-    before_action :set_institution, only: [:create]
+    before_action :set_institution, only: [:index, :create]
 
     # GET /students
     def index
-      @students = Student.all
+      @students = @institution.students.all
     end
 
     # GET /students/1

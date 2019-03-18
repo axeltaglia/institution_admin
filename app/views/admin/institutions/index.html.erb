@@ -25,7 +25,7 @@
                   <%= institution.name %>
                   <% end %>  
                 </td>
-                <td> <%= institution.institution_owner.name %> </td>
+                <td> <%# institution.institution_owner.user.name %> </td>
                 <td>
                   <div class="btn-row">
                     <%= link_to raw('<i class="fa fa-eye"></i>'), admin_institution_url(institution), class: 'btn btn-sm btn-success' %>

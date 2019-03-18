@@ -1,4 +1,5 @@
 class Student < ApplicationRecord
+  has_one :user
   belongs_to :institution
 
   has_many :subscriptions

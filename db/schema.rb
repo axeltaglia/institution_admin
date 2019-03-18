@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190316225926) do
+ActiveRecord::Schema.define(version: 20190310191809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,13 +57,13 @@ ActiveRecord::Schema.define(version: 20190316225926) do
 
   create_table "fees", force: :cascade do |t|
     t.integer  "student_id"
+    t.integer  "year"
     t.integer  "month"
     t.integer  "total_to_pay"
     t.integer  "amount_paid"
     t.integer  "status"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "year"
     t.index ["student_id"], name: "index_fees_on_student_id", using: :btree
   end
 
@@ -75,29 +75,30 @@ ActiveRecord::Schema.define(version: 20190316225926) do
   end
 
   create_table "institution_owners", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_institution_owners_on_user_id", using: :btree
+    t.integer  "institution_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["institution_id"], name: "index_institution_owners_on_institution_id", using: :btree
   end
 
   create_table "institutions", force: :cascade do |t|
     t.string   "name"
-    t.integer  "institution_owner_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["institution_owner_id"], name: "index_institutions_on_institution_owner_id", using: :btree
+    t.string   "address"
+    t.string   "contact_phone"
+    t.string   "contact_email"
+    t.string   "website"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "items", force: :cascade do |t|
     t.string   "description"
-    t.integer  "price"
-    t.integer  "asignature_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "subscription_id"
     t.integer  "fee_id"
-    t.index ["asignature_id"], name: "index_items_on_asignature_id", using: :btree
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["fee_id"], name: "index_items_on_fee_id", using: :btree
+    t.index ["subscription_id"], name: "index_items_on_subscription_id", using: :btree
   end
 
   create_table "students", force: :cascade do |t|
@@ -117,13 +118,14 @@ ActiveRecord::Schema.define(version: 20190316225926) do
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "student_id"
     t.integer  "asignature_id"
-    t.integer  "status"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "price"
     t.integer  "day_id"
     t.integer  "start_at_id"
     t.integer  "end_at_id"
     t.integer  "classroom_id"
+    t.integer  "status"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["asignature_id"], name: "index_subscriptions_on_asignature_id", using: :btree
     t.index ["classroom_id"], name: "index_subscriptions_on_classroom_id", using: :btree
     t.index ["day_id"], name: "index_subscriptions_on_day_id", using: :btree
@@ -134,7 +136,11 @@ ActiveRecord::Schema.define(version: 20190316225926) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
+    t.string   "name"
     t.string   "encrypted_password",     default: "", null: false
+    t.integer  "roles_mask"
+    t.integer  "institution_owner_id"
+    t.integer  "student_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -145,24 +151,24 @@ ActiveRecord::Schema.define(version: 20190316225926) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "name"
-    t.integer  "role"
-    t.integer  "roles_mask"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["institution_owner_id"], name: "index_users_on_institution_owner_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["student_id"], name: "index_users_on_student_id", using: :btree
   end
 
   add_foreign_key "asignatures", "institutions"
   add_foreign_key "classrooms", "institutions"
   add_foreign_key "contact_informations", "students"
   add_foreign_key "fees", "students"
-  add_foreign_key "institution_owners", "users"
-  add_foreign_key "institutions", "institution_owners"
-  add_foreign_key "items", "asignatures"
+  add_foreign_key "institution_owners", "institutions"
   add_foreign_key "items", "fees"
+  add_foreign_key "items", "subscriptions"
   add_foreign_key "students", "institutions"
   add_foreign_key "subscriptions", "asignatures"
   add_foreign_key "subscriptions", "classrooms"
   add_foreign_key "subscriptions", "days"
   add_foreign_key "subscriptions", "students"
+  add_foreign_key "users", "institution_owners"
+  add_foreign_key "users", "students"
 end

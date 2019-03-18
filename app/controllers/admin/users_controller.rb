@@ -44,7 +44,7 @@ module Admin
     # PATCH/PUT /users/1
     def update
       if @user.update(user_params)
-        add_roles_profiles(user_params[:roles])
+        #add_roles_profiles(user_params[:roles])
         flash[:notice] = t('admin.users.update.success')
         redirect_to admin_users_path
       else
