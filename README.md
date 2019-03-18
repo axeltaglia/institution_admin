@@ -358,6 +358,13 @@ sudo /etc/init.d/apache2 restart
 RAILS_ENV=production bin/rake fees:create[3,2019]
 ```
 
+## Enviar email de promoción
+
+```
+RAILS_ENV=production bin/rake contacts:promotion_email
+```
+
+
 ## Log de errores (production)
 
 ```
