@@ -67,24 +67,6 @@ module Owner
       end
     end
 
-    def pay_fee
-      fee = Fee.find(params[:fee_id])
-  
-      fee.student.contact_informations.each do |contact|
-        StudentMailer.receipt_email(fee, contact.email).deliver_now
-      end
-
-      fee.payed!
-      fee.amount_paid = fee.total_to_pay
-      fee.save
-
-      StudentMailer.receipt_email(fee, "axeltaglia@gmail.com").deliver_now
-      
-      respond_to do |format|
-        format.html { redirect_to owner_student_path(@student), notice: "The payment was successful." }
-      end
-    end
-
     private
       def set_student
         @student = Student.find(params[:id])

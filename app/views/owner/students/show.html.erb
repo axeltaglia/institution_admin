@@ -30,8 +30,8 @@
                 <table class="table table-bordered table-striped">
                 	<thead>
 			            <tr>
+						  <th>Estado</th>
 			              <th>Mes</th>
-			              <th>Estado</th>
 			              <th>Valor</th>
 			              <th>Acciones</th>
 			            </tr>
@@ -40,10 +40,27 @@
 		          	<tbody>
 		          		<% @student.fees.order(month: :desc).each do |fee| %>
 		          		<tr>
-		          			<td><%= fee.month %></td>
-		          			<td><%= fee.status %></td>
+							<td>
+								<% if fee.payed? %>
+								<i class="fa fa-check"></i>
+								<% else %>
+								<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+								<% end %>
+
+							</td>
+		          			<td><%= number_to_month fee.month %></td>
 		          			<td><%= fee.total_to_pay %></td>
-		          			<td><%= link_to raw('<i class="fa fa-ok"></i>'), owner_student_pay_fee_url(@student, fee), class: 'btn btn-sm btn-warning' %></td>
+		          			<td>
+								<% unless fee.payed? %>
+									<%= link_to "Pagar", owner_pay_fee_url(@student, fee), class: 'btn btn-sm btn-success' %>
+								<% end %>
+
+								<% if fee.payed? %>
+									<%= link_to "Reenviar", owner_pay_fee_url(@student, fee), class: 'btn btn-sm btn-success' %>
+								<% end %>
+
+								<%= link_to raw('<i class="fa fa-pencil"></i>'), edit_owner_fee_path(fee), class: 'btn btn-sm btn-warning' %>
+							</td>
 		          		</tr>
 		          		<% end %>
 		          	</tbody>

@@ -1,1 +1,69 @@
-<h1>DashBoard For Owner Institution</h1>
+
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">BeBop Escuela de Música</h1>
+            </div><!-- /.col -->
+
+        </div><!-- /.row -->
+        <% if @active_suscriptions > @generated_items_fees_count %>
+        <div style="padding: 20px 30px; background: rgb(243, 156, 18); z-index: 999999; font-size: 16px; font-weight: 600;">
+            <p>
+            <a href="https://themequarry.com" style="color: rgba(255, 255, 255, 0.901961); display: inline-block; margin-right: 10px; text-decoration: none;">
+                Faltan generar <%= @active_suscriptions - @generated_items_fees_count %> cuotas para el mes de <%= number_to_month(@current_month) %> de un total de <%= @active_suscriptions %> suscripciones activas. 
+            </a>
+            </p>
+            <p class="text-center">
+            <a class="btn btn-default btn-sm" href="<%= owner_generate_fees_url(@current_month, @current_year) %>" style="margin-top: 10px; border: 0px; box-shadow: none; color: rgb(243, 156, 18); font-weight: 600; background: rgb(255, 255, 255);">
+                Generar cuotas restantes
+            </a>
+            </p>
+        </div>
+        <% end %>
+        
+    </div><!-- /.container-fluid -->
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-6 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                <div class="inner">
+                    <h3><%= @active_suscriptions %></h3>
+
+                    <p>Suscripciones Activas</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-users"></i>
+                </div>
+                <a href="<%= owner_subscriptions_path %>" class="small-box-footer">Ir al Listado <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-6 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                <div class="inner">
+                    <h3><%= @fee_payed_percentaje %><sup style="font-size: 20px">%</sup></h3>
+                    <p>Cuotas abonadas hasta el momento (<%= number_to_month(@current_month) %>)</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-file"></i>
+                </div>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+
+        <div class="row">
+
+        </div>
+    </div>
+</section>

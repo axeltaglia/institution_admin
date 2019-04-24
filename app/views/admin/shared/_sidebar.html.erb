@@ -13,20 +13,21 @@
 
     <ul class="sidebar-menu">
       <li class="header"><%= t('admin.sidebar.main_navigation') %></li>
-      
-      <% if current_user.is? :admin %>
-      <li> <%= link_to '<i class="fa fa-dashboard"></i><span>Dashboard</span>'.html_safe, admin_root_path %> </li>
+    
+      <% if current_user.is? :institution_owner %>
+      <li> <%= link_to '<i class="fa fa-dashboard"></i><span>Administración</span>'.html_safe, owner_dashboard_path %> </li>
       <% end %>
 
       <% if current_user.is? :institution_owner %>
-      <li> <%= link_to '<i class="fa fa-dashboard"></i><span>Dashboard</span>'.html_safe, owner_root_path %> </li>
+      <!-- Calendario de estudiantes -->
+      <li><%= link_to '<i class="fa fa-calendar"></i> Calendario de estudiantes'.html_safe, owner_subscriptions_path %></li>
+
+      <!-- Asignaturas -->
+      <li> <%= link_to '<i class="fa fa-circle-o"></i> Asignaturas'.html_safe, owner_asignatures_path %> </li>
       <% end %>
 
-      <li class="header"><%= t('admin.sidebar.administration') %></li>
-
-
-
       <% if current_user.is? :admin %>
+      <li class="header"><%= t('admin.sidebar.administration') %></li>
       <!-- Users -->
       <li class="treeview">
         <a href="#">
@@ -41,50 +42,6 @@
           <li> <%= link_to '<i class="fa fa-circle-o"></i> Create User'.html_safe, new_admin_user_path %> </li>
         </ul>
       </li>
-
-      <!-- Institutions -->
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-home"></i>
-          <span><%= t('admin.institutions.title') %></span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li> <%= link_to '<i class="fa fa-circle-o"></i> List Institutions'.html_safe, admin_institutions_path %> </li>
-          <li> <%= link_to '<i class="fa fa-circle-o"></i> Create Institution'.html_safe, new_admin_institution_path %> </li>
-        </ul>
-      <% end %>
-
-      <% if current_user.is? :institution_owner %>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-users"></i>
-          <span><%= t('owner.students.title') %></span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li> <%= link_to '<i class="fa fa-circle-o"></i> Calendario'.html_safe, owner_subscriptions_path %> </li>
-        </ul>
-      </li>
-
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-users"></i>
-          <span><%= t('owner.asignatures.title') %></span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li> <%= link_to '<i class="fa fa-circle-o"></i> List Asignatures'.html_safe, owner_asignatures_path %> </li>
-          <li> <%= link_to '<i class="fa fa-circle-o"></i> Create Asignature'.html_safe, new_owner_asignature_path %> </li>
-        </ul>
-      </li>
-
       <% end %>
 
     </ul>

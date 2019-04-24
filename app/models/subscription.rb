@@ -7,6 +7,8 @@ class Subscription < ApplicationRecord
   belongs_to :classroom, required: true
 
   enum charging_mode: [:monthly, :per_class]
+  
+  scope :actives, -> { where(status: 1) }
 
   def description
     self.asignature.name + " | " + self.day.name + " de " + self.start_at.str_time + " a " + self.end_at.str_time 

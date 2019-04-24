@@ -7,7 +7,10 @@ Rails.application.routes.draw do
     resources :students
     resources :asignatures
     resources :subscriptions
-    get '/pay_fee/:id/:fee_id', to: 'students#pay_fee', as: 'student_pay_fee'
+    resources :fees
+    get '/dashboard', to: 'dashboard#index'
+    get '/generate_fees/:month/:year', to: 'fees#generate_fees', as: 'generate_fees'
+    get '/pay_fee/:id/:fee_id', to: 'fees#pay_fee', as: 'pay_fee'
   end
 
   namespace :admin do

@@ -10,8 +10,7 @@
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th>Alumno</th>
-              <th>Acciones</th>
+              <th>Estudiante</th>
             </tr>
           </thead>
 
@@ -22,21 +21,12 @@
                 <%= link_to owner_student_path(subscription.student) do %> 
                 <%= subscription.student.full_name %> (<%= subscription.asignature.name %>)
                 <% end %>
-              </td>
-              <td>
-                <div class="btn-row">
-                </div>
+
+                <%= subscription.student.pay_pending? %>
               </td>
             </tr>
             <% end %>
           </tbody>
-
-          <tfoot>
-            <tr role="row">
-              <th>Alumno</th>
-              <th>Acciones</th>
-            </tr>
-          </tfoot>
         </table>
       </div>
     </div>
@@ -45,6 +35,6 @@
 
 <div class="row">
   <div class="col-md-2 col-md-offset-10">
-    <%= link_to t('button.new'), new_owner_student_path, class: 'btn btn-success pull-right' %>
+    <%= link_to "Agregar estudiante", new_owner_student_path, class: 'btn btn-success pull-right' %>
   </div>
 </div>

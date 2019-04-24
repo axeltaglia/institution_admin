@@ -16,4 +16,9 @@ class Student < ApplicationRecord
     "#{self.name} #{self.last_name}"
   end
 
+  def pay_pending?
+    "*" if self.fees.where('fees.status = 0').count > 0
+    
+  end
+
 end

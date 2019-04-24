@@ -355,13 +355,13 @@ sudo /etc/init.d/apache2 restart
 ## Generar pagos
 
 ```
-RAILS_ENV=production bin/rake fees:create[3,2019]
+rake fees:create[3,2019] RAILS_ENV=production
 ```
 
 ## Enviar email de promoción
 
 ```
-RAILS_ENV=production bin/rake contacts:promotion_email
+rake contacts:promotion_email RAILS_ENV=production
 ```
 
 
