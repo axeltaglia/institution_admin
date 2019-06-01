@@ -10,7 +10,8 @@ module Owner
               .where(status: 1)
               .includes(:day)
               .includes(:start_at)
-              .order('days.number', 'hours.seconds_since_midnight')
+              .includes(:student)
+              .order('students.name', 'students.last_name')
 
       end
       

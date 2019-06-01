@@ -17,8 +17,7 @@ class Student < ApplicationRecord
   end
 
   def pay_pending?
-    "*" if self.fees.where('fees.status = 0').count > 0
-    
+    self.fees.where('fees.status = 0').count > 0
   end
 
 end

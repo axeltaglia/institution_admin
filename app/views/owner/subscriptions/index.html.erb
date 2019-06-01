@@ -18,11 +18,9 @@
             <% @subscriptions.each do |subscription| %>
             <tr>
               <td> 
-                <%= link_to owner_student_path(subscription.student) do %> 
+                <%= link_to owner_student_path(subscription.student), :class => (subscription.student.pay_pending? ? "text-red" : "")  do %> 
                 <%= subscription.student.full_name %> (<%= subscription.asignature.name %>)
                 <% end %>
-
-                <%= subscription.student.pay_pending? %>
               </td>
             </tr>
             <% end %>
